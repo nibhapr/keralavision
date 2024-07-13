@@ -97,6 +97,7 @@ class EmployeesController extends AdminBaseController
      */
     public function create()
     {
+        
         $this->department = Department::pluck('deptName', 'id');
 
         return View::make('admin.employees.create', $this->data);
@@ -109,10 +110,13 @@ class EmployeesController extends AdminBaseController
      */
     public function store(CreateRequest $request)
     {
+
+        
         DB::beginTransaction();
         try {
 
             $employee = Employee::create($request->toArray());
+           
 
             // Profile Image Upload
             if ($request->profileImage) {

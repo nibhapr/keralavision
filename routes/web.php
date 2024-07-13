@@ -1,15 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Route::get('/base64', function(){
     $image = public_path('installer/img/pattern.png');;
     $img = \Image::make($image);
@@ -26,14 +16,9 @@ Route::group(['middleware' => ['auth.employees'],'namespace' => 'Front'], functi
     Route::get('/change_password_modal',['as'=>'front.change_password_modal','uses'=>'DashboardController@changePasswordModal']);
     Route::post('/change_password',['as'=>'front.change_password','uses'=>'DashboardController@change_password']);
     Route::get('ajaxApplications',['as'=>'front.leave_applications','uses'=> 'DashboardController@ajaxApplications']);
-
     Route::get('leave',['as'=>'front.leave','uses'=>'DashboardController@leave']);
-
     Route::post('dashboard/notice/{id}',['as'=>'front.notice_ajax','uses'=>'DashboardController@notice_ajax']);
-
     Route::post('leave_store',['as'=>'front.leave_store','uses'=>'DashboardController@leave_store']);
-
-
     Route::resource('dashboard','DashboardController');
 });
 # Admin Login
@@ -48,7 +33,6 @@ Route::group([ 'prefix' => 'admin','namespace' => 'Admin'], function()
 
     Route::get('/',['as'=>'admin.getlogin','uses'=>'AdminLoginController@index']);
     Route::get('logout',['as'=>'admin.logout','uses'=> 'AdminLoginController@logout']);
-
     Route::post('login',['as'=>'admin.login','uses'=> 'AdminLoginController@ajaxAdminLogin']);
 
 });
@@ -61,38 +45,28 @@ Route::group(['middleware' => ['auth.admin'], 'prefix' => 'admin','namespace' =>
     //	Dashboard Routing
     //Route::resource('dashboard', 'AdminDashboardController');
     Route::resource('dashboard', 'AdminDashboardController',['as' => 'admin']);
-
     //    Employees Routing
     Route::get('employees/export',['as'=>'admin.employees.export','uses'=>'EmployeesController@export']);
     Route::get('employees/employeeLogin/{id}',['as'=>'admin.employees.employeeLogin','uses'=>'EmployeesController@employeesLogin']);
     Route::get('employees/employeelist',['as'=>'admin.employees.ajaxlist','uses'=>'EmployeesController@ajaxEmployees']);
     Route::resource('employees', 'EmployeesController',['except' => ['show'],'as' => 'admin']);
-
     //   Admin user Routing
     Route::get('admin/export',['as'=>'admin.admin.export','uses'=>'AdminController@export']);
-
     Route::get('admin/adminlist',['as'=>'admin.admin.ajaxlist','uses'=>'AdminController@ajaxAdmin']);
-
      Route::resource('admin', 'AdminController',['except' => ['show'],'as' => 'admin']);
-
     //  Awards Routing
     Route::get('ajax_awards/',['as'=>'admin.ajax_awards','uses'=> 'AwardsController@ajax_awards']);
     Route::resource('awards', 'AwardsController',['except'=>['show'],'as' => 'admin']);
-
     //  Department Routing
     Route::get('departments/ajax_designation/',['as'=>'admin.departments.ajax_designation','uses'=> 'DepartmentsController@ajax_designation']);
     Route::get('departments/ajax_department/',['as'=>'admin.departments.ajax_department','uses'=> 'DepartmentsController@ajaxDepartments']);
     Route::resource('departments', 'DepartmentsController',['as' => 'admin']);
-
-    //    Expense Routing
     Route::get('ajax_expenses/',['as'=>'admin.ajax_expenses','uses'=> 'ExpensesController@ajax_expenses']);
     Route::resource('expenses', 'ExpensesController',['except' => ['show'],'as' => 'admin']);
-
-    //    Holiday Routing
+  
     Route::get('holidays/mark_sunday', 'HolidaysController@Sunday');
     Route::resource('holidays', 'HolidaysController',['as' => 'admin']);
-
-    //  Routing for the attendance
+   
     Route::get('attendances/report/{attendances}', ['as'=>'admin.attendance.report','uses'=>'AttendancesController@report']);
     Route::get('attendances/ajax-attendance-list', ['as'=>'admin.attendance.ajax-attendance-list','uses'=>'AttendancesController@ajaxAttendanceList']);
     Route::post('attendances/export', ['as'=>'admin.attendance.export','uses'=>'AttendancesController@export']);

@@ -90,11 +90,11 @@
                         <!-- Leave -->
                         <li class="dropdown {{$leaveActive ?? ''}}">
                             <a href="" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                                Leave
+                                Hospital Admit
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="" data-toggle="modal" data-target=".apply_modal">Apply Leave</a></li>
-                                <li><a href="{{route('front.leave')}}">My Leave</a></li>
+                                <li><a href="" data-toggle="modal" data-target=".apply_modal">Admit Hospital</a></li>
+                                <li><a href="{{route('front.leave')}}">Admitted details</a></li>
 
                             </ul>
                         </li>
@@ -254,7 +254,7 @@
                 <div class="modal-header">
                     <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                     <h4 id="myLargeModalLabel" class="modal-title">
-                        Apply Leave
+                        Add admitted date
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -269,17 +269,21 @@
                             <div class="col-md-3 form-group">
                                 <label class="input">
                                     <i class="icon-append fa fa-calendar"></i>
-                                    <input type="text" name="date[0]" id="leave" placeholder="Leave date">
+                                    <input type="text" name="date[0]" id="leave" placeholder="Admitted date">
                                 </label>
                             </div>
-                            <div class="col-md-2 form-group">
+                            <div class="col-md-4 form-group">
+                                <input class="form-control form-control-inline" type="text" name="reason[0]"
+                                       placeholder="Hospital Name"/>
+                            </div>
+                            <!-- <div class="col-md-2 form-group">
                                 {!! Form::select('leaveType[0]', $leaveTypes,null,['class' => 'form-control
                                 leaveType','id'=>'leaveType0','onchange'=>'halfDayToggle(0,this.value)'] ) !!}
                             </div>
                             <div class="col-md-2 form-group">
                                 {!! Form::select('halfleaveType[0]', $leaveTypeWithoutHalfDay,null,['class' =>
                                 'form-control halfLeaveType','id'=>'halfLeaveType0'] ) !!}
-                            </div>
+                            </div> -->
                             <div class="col-md-5 form-group">
                                 <input class="form-control form-control-inline" type="text" name="reason[0]"
                                        placeholder="Reason"/>
@@ -287,9 +291,9 @@
                         </div>
                         <div id="insertBefore"></div>
 
-                        <button type="button" id="plusButton" class="btn-u btn-u-green">
+                        <!-- <button type="button" id="plusButton" class="btn-u btn-u-green">
                             Add More <i class="fa fa-plus"></i>
-                        </button>
+                        </button> -->
                         <div class="row">
                             <div class="col-md-offset-4 col-md-8">
                                 <button type="button" class="btn-u btn-u-sea" onclick="submitLeave()"><i

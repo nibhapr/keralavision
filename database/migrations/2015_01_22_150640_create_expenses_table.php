@@ -21,6 +21,7 @@ class CreateExpensesTable extends Migration {
             $table->string('purchaseFrom');
             $table->double('price');
             $table->string('bill',100)->nullable(); //Attachement for the bill
+			$table->foreignId('employee_id')->nullable();
 
             $table->timestamps();
 		});

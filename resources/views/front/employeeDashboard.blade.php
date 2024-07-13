@@ -15,7 +15,7 @@
                 <div class="col-sm-6">
                     <div class="panel panel-profile no-bg">
                         <div class="panel-heading overflow-h">
-                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Personal Details
+                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Operator Personal Details
                             </h2>
                         </div>
                         <div class="panel-body panelHolder">
@@ -31,7 +31,15 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="primary-link">Father's Name</span>
+                                        <span class="primary-link">Location</span>
+                                    </td>
+                                    <td>
+                                        {{$employee->localAddress}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="primary-link">Toatl Family Members</span>
                                     </td>
                                     <td>
                                         {{$employee->fatherName}}
@@ -69,14 +77,7 @@
                                         {{$employee->mobileNumber}}
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <span class="primary-link">Local Address</span>
-                                    </td>
-                                    <td>
-                                        {{$employee->localAddress}}
-                                    </td>
-                                </tr>
+                               
                                 <tr>
                                     <td>
                                         <span class="primary-link">Permanent Address</span>
@@ -92,7 +93,7 @@
 
                     <div class="panel panel-profile no-bg margin-top-20">
                         <div class="panel-heading overflow-h">
-                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i>Company Details
+                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i>Keral vision Registration Details
                             </h2>
                         </div>
                         <div class="panel-body panelHolder">
@@ -108,7 +109,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="primary-link">Department</span>
+                                        <span class="primary-link">Area Of Service</span>
                                     </td>
                                     <td>
                                         {{$employee->getDesignation->department->deptName}}
@@ -130,19 +131,7 @@
                                         {{date('d-M-Y',strtotime($employee->joiningDate))}}
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <span class="primary-link">Salary ( {!!  \App\Models\Setting::getCurrency($setting->currency)['symbol'] !!} {{$setting->currency}} )</span>
-                                    </td>
-                                    <td>
-
-                                        @foreach($employee->getSalary as $salary)
-                                            <p>{{$salary->type}} : {{$salary->salary}} {!!  \App\Models\Setting::getCurrency($setting->currency)['symbol'] !!} {{$setting->currency}}</p>
-                                        @endforeach
-
-
-                                    </td>
-                                </tr>
+                               
                                 </tbody>
                             </table>
                         </div>
@@ -236,9 +225,9 @@
                         </div>
                     </div>
 
-                    <div class="panel panel-profile margin-top-20">
+                    <!-- <div class="panel panel-profile margin-top-20">
                         <div class="panel-heading overflow-h">
-                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-send"></i> Upcoming Holidays
+                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-send"></i> Any complaints 
                             </h2>
                         </div>
                         <div id="scrollbar3" class="panel-body contentHolder">
@@ -264,7 +253,7 @@
                             @endforelse
 
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="panel panel-profile margin-top-20">
                         <div class="panel-heading overflow-h">
@@ -299,7 +288,7 @@
             <!--Profile Blog-->
             <div class="panel panel-profile">
                 <div class="panel-heading overflow-h">
-                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-tasks"></i>Attendance</h2>
+                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-tasks"></i>Hospital Admitted Dates</h2>
                 </div>
                 <div class="panel-body panelHolder">
 

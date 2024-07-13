@@ -174,4 +174,9 @@ class Employee extends \Eloquent implements Authenticatable
         $this->attributes['joiningDate'] = date('Y-m-d', strtotime($value));
     }
 
+    public function expenses() 
+    {
+        return $this->hasMany(Expense::class);
+    }
+
 }

@@ -14,7 +14,7 @@
     <!-- BEGIN PAGE HEADER-->
     <h3 class="page-title">
         {{$pageTitle}}
-        <small>Employee List</small>
+        <small>Operator List</small>
     </h3>
     <div class="page-bar">
         <ul class="page-breadcrumb">
@@ -24,11 +24,11 @@
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="{{route('admin.employees.index')}}">Employees</a>
+                <a href="{{route('admin.employees.index')}}">Operators</a>
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="#">Employee List</a>
+                <a href="#">Operators List</a>
             </li>
         </ul>
 
@@ -47,7 +47,7 @@
 
             </div>
             <a href="{{route('admin.employees.create')}}" class="btn green">
-                Add New Employee <i class="fa fa-plus"></i>
+                Add New Operator <i class="fa fa-plus"></i>
             </a>
 
             <hr>
@@ -55,7 +55,7 @@
 
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-users"></i>Employees List
+                        <i class="fa fa-users"></i>Operators List
                     </div>
                     <div class="tools">
                         <div class="btn-group pull-right">
@@ -72,7 +72,7 @@
                         <thead>
                         <tr>
                             <th class="text-center">
-                                EmployeeID
+                                OperatorID
                             </th>
                             <th class="text-center">
                                 Image

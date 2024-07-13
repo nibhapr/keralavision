@@ -38,7 +38,7 @@
 
                     <div class="panel panel-grey">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-tasks"></i> My Leave Applications</h3>
+                            <h3 class="panel-title"><i class="fa fa-tasks"></i> My  Applications</h3>
                         </div>
                         <div class="panel-body">
 

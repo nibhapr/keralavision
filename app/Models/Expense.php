@@ -46,5 +46,10 @@ class Expense extends Model
         return asset_url('expense/bills/'.$this->bill, null);
 
     }
+        
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
 
 }

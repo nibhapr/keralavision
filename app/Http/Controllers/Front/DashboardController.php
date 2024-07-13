@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Front;
-
-
 use App\Classes\Reply;
 use App\Events\ChangePasswordEvent;
 use App\Events\LeaveRequestToAdminEvent;
@@ -144,7 +142,7 @@ class DashboardController extends BaseController
                 $reason[$index] = $request->reason[$index];
             } catch (\Exception $e) {
 
-                return Reply::error('<strong>Error!</strong> You have already applied leave for the particular date');
+                return Reply::error('<strong>Error!</strong> You have already enter admitted details for the particular date');
             }
         }
 

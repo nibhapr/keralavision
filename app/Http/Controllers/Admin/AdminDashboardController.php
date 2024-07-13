@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\AdminBaseController;
 use App\Models\Attendance;
 use App\Models\Holiday;

@@ -28,7 +28,7 @@ class ExpensesController extends AdminBaseController
     {
         parent::__construct();
         $this->data['inventoryActive'] = 'active';
-        $this->data['pageTitle'] = 'Expense';
+        $this->data['pageTitle'] = 'Insurance';
     }
 
     /**
@@ -37,7 +37,7 @@ class ExpensesController extends AdminBaseController
      */
     public function index(IndexRequest $request)
     {
-        $this->data['expenses'] = Expense::all();
+        $this->data['expenses'] = Expense::with('employee')->get();
         $this->data['expensesActive'] = 'active';
 
         return View::make('admin.expenses.index', $this->data);
@@ -49,11 +49,21 @@ class ExpensesController extends AdminBaseController
      */
     public function ajax_expenses()
     {
-        $result = Expense::
-        select('id', 'itemName', 'purchaseFrom', 'purchaseDate', 'price')
-            ->orderBy('created_at', 'desc');
+        $result = Expense::orderBy('created_at', 'desc');
 
-         return datatables()->eloquent($result)
+        return datatables()->eloquent($result)
+            ->addColumn('check', function ($row) {
+                return '<input type="checkbox" class="form-check-input select-table-row"  id="datatable-row-' . $row->id . '"  name="datatable_ids[]" value="' . $row->id . '" data-type="blog" onclick="dataTableRowCheck(' . $row->id . ',this)">';
+            })
+            ->editColumn('name', function ($row) {
+                return $row->name;
+            })
+            ->editColumn('employee', function ($row) {
+                return $row->employee->fullName ?? '-';
+            })
+            ->editColumn('price', function ($row) {
+                return $row->price;
+            })
             ->editColumn('purchaseDate', function ($row) {
                 return date('d-M-Y', strtotime($row->purchaseDate));
             })
@@ -61,13 +71,14 @@ class ExpensesController extends AdminBaseController
                         <p><a  class="btn btn-sm purple list-index"   href="{{ route(\'admin.expenses.edit\',$id)}}" ><i class="fa fa-edit"></i> View/Edit</a></p>
                             <p><a href="javascript:;"   onclick="del(\'{{ $id }}\',\'{{ $itemName }}\');return false;" class="btn btn-sm red list-index">
                         <i class="fa fa-trash"></i> Delete</a></p>')
-            ->escapeColumns(['action'])
-            ->removeColumn('bill_url')
-            ->make(false);
+            ->addIndexColumn()
+            ->rawColumns(['name', 'action', 'check'])
+            ->toJson();
     }
 
     public function create()
     {
+      
         $this->data['expensesAddActive'] = 'active';
         return View::make('admin.expenses.create', $this->data);
     }
@@ -126,7 +137,6 @@ class ExpensesController extends AdminBaseController
         $expense->save();
 
         return Reply::redirect(route('admin.expenses.index'), 'Expense successfully updated');
-
     }
 
     /**
@@ -140,5 +150,4 @@ class ExpensesController extends AdminBaseController
 
         return Reply::success('Delete Successfully');
     }
-
 }

@@ -22,11 +22,11 @@
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="{{route('admin.employees.index')}}">Employees</a>
+                <a href="{{route('admin.employees.index')}}">Operator</a>
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="">Edit Employee </a>
+                <a href="">Edit Operator </a>
 
             </li>
         </ul>
@@ -270,7 +270,7 @@
                         </div>
 
                         <hr>
-                        <h4><strong>Salary ( {!!  \App\Models\Setting::getCurrency($setting->currency)['symbol'] !!} {{$setting->currency}} )</strong></h4>
+                        <!-- <h4><strong>Salary ( {!!  \App\Models\Setting::getCurrency($setting->currency)['symbol'] !!} {{$setting->currency}} )</strong></h4>
                         <div id="salaryData">
                             @foreach($employee->getSalary as $salary)
                                 <div id="salary{{$salary->id}}">
@@ -294,11 +294,11 @@
                                     </div>
                                 </div>
                             @endforeach
-                        </div>
+                        </div> -->
 
-                        <a class="" href="javascript:;" onclick="showSalary({{$employee->employeeID}})">
+                        <!-- <a class="" href="javascript:;" onclick="showSalary({{$employee->employeeID}})">
                             Add Salary
-                            <i class="fa fa-plus"></i> </a>
+                            <i class="fa fa-plus"></i> </a> -->
                     </div>
                     {!! Form::close() !!}
 

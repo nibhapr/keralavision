@@ -12,7 +12,7 @@
 
     <!-- BEGIN PAGE HEADER-->
     <h3 class="page-title">
-        <span class="fa fa-plus"></span> New Employee
+        <span class="fa fa-plus"></span> New Operator
     </h3>
     <div class="page-bar">
         <ul class="page-breadcrumb">
@@ -22,11 +22,11 @@
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="{{route('admin.employees.index')}}">Employees</a>
+                <a href="{{route('admin.employees.index')}}">Operators</a>
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="#">New Employee</a>
+                <a href="#">New Operator</a>
             </li>
         </ul>
     </div>
@@ -110,7 +110,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Name <span class="required">* </span></label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="fullName" placeholder="Employee Name"
+                                    <input type="text" class="form-control" name="fullName" placeholder="Operator Name"
                                            value="{{ \Illuminate\Support\Facades\Request::old('fullName') }}">
                                 </div>
                             </div>
@@ -191,7 +191,7 @@
                 <div class="portlet box red-sunglo">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-calendar"></i>Company Details
+                            <i class="fa fa-calendar"></i>Operator Details
                         </div>
 
                     </div>
@@ -199,32 +199,34 @@
 
                         <div class="form-body">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Employee ID<span
+                                <label class="col-md-3 control-label">Operator ID<span
                                         class="required">* </span></label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="employeeID" placeholder="Employee ID"
+                                    <input type="text" class="form-control" name="employeeID" placeholder="Operator ID"
                                            value="{{\Illuminate\Support\Facades\Request::old('employeeID')}}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Department<span class="required">* </span></label>
+                                <label class="col-md-3 control-label">Location<span class="required">* </span></label>
                                 <div class="col-md-9">
-                                    {!! Form::select('department', $department,null,['class' => 'form-control
-                                    select2me','id'=>'department','onchange'=>'dept();return false;']) !!}
+                                <input type="text" class="form-control" name="employeeID" placeholder="Location"
+                                value="">
+                                    <!-- {!! Form::select('department', $department,null,['class' => 'form-control
+                                    select2me','id'=>'department','onchange'=>'dept();return false;']) !!} -->
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Designation<span
+                                <label class="col-md-3 control-label">Service Name<span
                                         class="required">* </span></label>
                                 <div class="col-md-9">
 
-                                    <select class="select2me form-control" name="designation" id="designation">
+                                    <select class="select2me form-control" name="Service Name" id="designation">
 
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">Date of Joining</label>
+                                <label class="control-label col-md-3">Date of Joining with Keralavision</label>
                                 <div class="col-md-3">
                                     <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy"
                                          data-date-viewmode="years">
@@ -236,14 +238,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Joining Salary</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="currentSalary"
-                                           placeholder="Current Salary"
-                                           value="{{ \Illuminate\Support\Facades\Request::old('currentSalary') }}">
-                                </div>
-                            </div>
+                          
                         </div>
 
                     </div>
@@ -308,10 +303,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="clearfix">
+         </div>
+          <div class="clearfix">
             {{---------------Documents------------------}}
-            <div class="row ">
+            <!-- <div class="row ">
                 <div class="col-md-12 col-sm-12">
                     <div class="portlet box purple-wisteria">
                         <div class="portlet-title">
@@ -453,14 +448,21 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="clearfix">
-            </div>
+            </div> -->
+
+
+
+
+
+
+
+            <!-- <div class="clearfix">
+            </div> -->
             <div class="form-actions">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-offset-3 col-md-9">
+                            <div class="col-md-offset-6 col-md-12">
                                 <button type="button" onclick="addEmployee()" class="btn green">
                                     <i class="fa fa-plus"></i> Submit
                                 </button>
@@ -468,7 +470,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ return [/*
 
 
     // Buttons
-    'btnAddEmployee'       => 'Add New Employee',
+    'btnAddEmployee'       => 'Add New Operator',
     'btnAddDepartment'     => 'Add New Department',
     'btnAddAward'          => 'Add New Award',
     'btnAddExpense'        => 'Add New Expense',
@@ -106,7 +106,7 @@ return [/*
     "value"                => "Value",
 
     // Dashboard
-    'totalEmployees'       => "Total Employees",
+    'totalEmployees'       => "Total Operators",
     'totalDepartments'     => "Total Departments",
     'totalAwards'          => "Total Awards",
     'expenseReport'        => "Expense Report",
@@ -123,7 +123,7 @@ return [/*
 
 
     // Employee
-    "employeeID"           => "Employee ID",
+    "employeeID"           => "Operator ID",
     'designation'          => "Designation",
     'atWork'               => 'At Work',
     'fatherName'           => 'Father\'s Name',
@@ -180,7 +180,7 @@ return [/*
     'designations'              => "Designations",
     'department'                => 'Department',
     'awardDetails'              => "Award Details",
-    'selectAnEmployee'          => "Select an employee",
+    'selectAnEmployee'          => "Select an operator",
 
     // Awards
     'awardeeName'               => 'Awardee Name',
@@ -188,7 +188,7 @@ return [/*
     'giveAnAward'               => 'Give an Award',
     'awardName'                 => 'Award Name',
     'cashPrice'                 => 'Cash Prize',
-    'employeeOfMonth'           => 'Employee of the Month',
+    'employeeOfMonth'           => 'Operator of the Month',
     'workAppreciation'          => 'Work Appreciation',
 
 
@@ -322,7 +322,7 @@ return [/*
     'welcomeTitle'   => "Welcome aboard HRM!",
     'welcomeMessage' => "Follow the steps shown below to get familiar with HRM.",
     'setupStep1'     => "Add Departments and Designations",
-    'setupStep2'     => "Import Employees",
+    'setupStep2'     => "Import Operators",
     'setupStep3'     => "Mark Holidays",
     'setupStep4'     => "Configure Leave Types",
     'setupStep5'     => "Mark Attendance",
@@ -375,7 +375,7 @@ return [/*
     /*
      * Front End
      */
-    'employee'         => 'Employee',
+    'employee'         => 'Operator',
     'noticeBoard'      => 'Notice Board',
     'upcomingHolidays' => 'Upcoming Holidays',
     'dateOfJoining'    => 'Date of Joining',
@@ -394,7 +394,7 @@ return [/*
     'atWorkFor'         => 'At work for',
     'leave'             => 'Leave',
     'leaves'            => 'Leaves',
-    'dashboardTitle'    => 'Employee Dashboard',
+    'dashboardTitle'    => 'Operator Dashboard',
     'jobTitle'          => 'Job Vacancy',
     'singleDateLeave'   => 'Single Leave Dates',
     'multipleDateleave' => 'Multiple leave Dates',
@@ -465,8 +465,8 @@ return [/*
     //
     'payroll'          => "Payroll",
     'createSalarySlip' => "Create Salary Slip",
-    'employeeInfo'     => "Employee Info",
-    'selectEmployee'   => "Select an Employee...",
+    'employeeInfo'     => "Operator Info",
+    'selectEmployee'   => "Select an Operator...",
 
     //Job
     'job'              => 'Jobs',
@@ -488,19 +488,19 @@ return [/*
     'companyAddress'   => 'Company Address',
     'loginDetails'     => 'Login Details',
     'loginDEmail'      => 'Login Email',
-    'employeeAdd'      => 'Employee Add',
+    'employeeAdd'      => 'Operator Add',
 
 
     // New Added
 
-    'editEmployee'     => "Edit Employee",
+    'editEmployee'     => "Edit Operator",
     'editAward'        => "Edit Award",
     'editExpense'      => "Edit Expense",
     'expenseDetails'   => "Expense Details",
     'addExpense'       => "Add Expense",
     'manageHolidays'   => "Manage Holidays",
-    'employeesMissing' => "Employees Missing",
-    'addSomeEmployees' => "Please add some employees to the database",
+    'employeesMissing' => "Operator Missing",
+    'addSomeEmployees' => "Please add some operator to the database",
 
     //Referrals
     'referralCode'     => "Referral Code",

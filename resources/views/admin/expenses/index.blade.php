@@ -58,7 +58,7 @@
                 <div class="portlet-body">
 
                     <table class="table table-striped table-bordered table-hover" id="expenses">
-                        <thead>
+                        <!-- <thead>
                         <tr>
                             <th>
                                 ID.
@@ -81,7 +81,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        </tbody>
+                        </tbody> -->
                     </table>
 
                 </div>
@@ -116,14 +116,14 @@
             "bDestroy": true,
             "order": [[1, "desc"]],
             "ajax": "{{ URL::route("admin.ajax_expenses") }}",
-            "aoColumns": [
-                {'sClass': 'center', "bSortable": true},
-                {'sClass': 'center', "bSortable": true},
-                {'sClass': 'center', "bSortable": true},
-                {'sClass': 'center', "bSortable": true},
-                {'sClass': 'center', "bSortable": true},
-                {'sClass': 'center', "bSortable": false}
-            ],
+            // "aoColumns": [
+            //     {'sClass': 'center', "bSortable": true},
+            //     {'sClass': 'center', "bSortable": true},
+            //     {'sClass': 'center', "bSortable": true},
+            //     {'sClass': 'center', "bSortable": true},
+            //     {'sClass': 'center', "bSortable": true},
+            //     {'sClass': 'center', "bSortable": false}
+            // ],
             "lengthMenu": [
                 [5, 15, 20, -1],
                 [5, 15, 20, "All"] // change per page values here
@@ -132,7 +132,47 @@
             "fnRowCallback": function (nRow, aData, iDisplayIndex) {
                 var row = $(nRow);
                 row.attr("id", 'row' + aData['0']);
-            }
+            },
+            "columns": [
+                    {
+                        name: 'check',
+                        data: 'check',
+                        title: '<input type="checkbox" class="form-check-input" name="select_all_table" id="select-all-table" data-type="blog" onclick="selectAllTable(this)">',
+                        exportable: false,
+                        orderable: false,
+                        searchable: false,
+                    },
+                    {
+                        data: 'itemName',
+                        name: 'itemName',
+                        title: "Item Name"
+                    },                    
+                    {
+                        data: 'employee',
+                        name: 'employee',
+                        title: "Employee",
+                        searchable: false,
+                        orderable: false
+                    },                    
+                    {
+                        data: 'price',
+                        name: 'price',
+                        title: "Price ( {!!  \App\Models\Setting::getCurrency($setting->currency)['symbol'] !!} {{$setting->currency}} )"
+                    },                    
+                    {
+                        data: 'purchaseDate',
+                        name: 'purchaseDate',
+                        title: "Purchase Date"
+                    },                    
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false,
+                        title: "Actions"
+                    }
+                    
+                ]
 
         });
 

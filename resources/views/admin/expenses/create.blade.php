@@ -12,7 +12,7 @@
 
     <!-- BEGIN PAGE HEADER-->
     <h3 class="page-title">
-        {{$pageTitle}} Add page
+        {{$pageTitle}} Claiming Details
     </h3>
     <div class="page-bar">
         <ul class="page-breadcrumb">
@@ -61,26 +61,42 @@
                     <div class="form-body">
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Item Name: <span class="required">
+                            <label class="col-md-2 control-label">Policy Holder: <span class="required">
                                 * </span>
                             </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="itemName" placeholder="Item Name"
+                                <input type="text" class="form-control" name="itemName" placeholder="Name policy holder"
                                        value="">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Purchase From:
+                            <label class="col-md-2 control-label">Patient’s Name:
                             </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="purchaseFrom" placeholder="Purchase From"
+                                <input type="text" class="form-control" name="purchaseFrom" placeholder="Name of the patient"
+                                       value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Relationship to Policyholder:
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="purchaseFrom" placeholder="Relationship with policy holder"
+                                       value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Description of Treatment:
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="purchaseFrom" placeholder="Description of Treatment"
                                        value="">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Purchase Date:
+                            <label class="col-md-2 control-label">Date of Incident::
                             </label>
                             <div class="col-md-6">
                                 <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy"
@@ -94,7 +110,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Amount price:<span class="required"> * </span> {!!  \App\Models\Setting::getCurrency($setting->currency)['symbol'] !!} {{$setting->currency}}</label>
+                            <label class="col-md-2 control-label">Total Claim Amount:<span class="required"> * </span> {!!  \App\Models\Setting::getCurrency($setting->currency)['symbol'] !!} {{$setting->currency}}</label>
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="price" placeholder="Price of Item"
@@ -102,7 +118,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="col-md-2 control-label">Attach Bill:</label>
 
                             <div class="col-md-6">
@@ -127,8 +143,150 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+<div class="row ">
+                <div class="col-md-12 col-sm-12">
+                    <div class="portlet box purple-wisteria">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-calendar"></i>Documents
+                            </div>
 
+                        </div>
+                        <div class="portlet-body">
+
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Medical Bills/Invoices</label>
+                                    <div class="col-md-5">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="input-group input-large">
+                                                <div class="form-control uneditable-input" data-trigger="fileinput">
+                                                    <i class="fa fa-file fileinput-exists"></i>&nbsp; <span
+                                                        class="fileinput-filename">
+                                            </span>
+                                                </div>
+                                                <span class="input-group-addon btn default btn-file">
+                                            <span class="fileinput-new">
+                                                Select file </span>
+                                            <span class="fileinput-exists">
+                                                Change </span>
+                                            <input type="file" name="resume">
+                                        </span>
+                                                <a href="#" class="input-group-addon btn btn-sm red fileinput-exists"
+                                                   data-dismiss="fileinput">
+                                                    Remove </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Medical Reports</label>
+                                    <div class="col-md-5">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="input-group input-large">
+                                                <div class="form-control uneditable-input" data-trigger="fileinput">
+                                                    <i class="fa fa-file fileinput-exists"></i>&nbsp; <span
+                                                        class="fileinput-filename">
+                                            </span>
+                                                </div>
+                                                <span class="input-group-addon btn default btn-file">
+                                            <span class="fileinput-new">
+                                                Select file </span>
+                                            <span class="fileinput-exists">
+                                                Change </span>
+                                            <input type="file" name="offerLetter">
+                                        </span>
+                                                <a href="#" class="input-group-addon btn btn-sm red fileinput-exists"
+                                                   data-dismiss="fileinput">
+                                                    Remove </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Prescriptions</label>
+                                    <div class="col-md-5">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="input-group input-large">
+                                                <div class="form-control uneditable-input" data-trigger="fileinput">
+                                                    <i class="fa fa-file fileinput-exists"></i>&nbsp; <span
+                                                        class="fileinput-filename">
+                                            </span>
+                                                </div>
+                                                <span class="input-group-addon btn default btn-file">
+                                            <span class="fileinput-new">
+                                                Select file </span>
+                                            <span class="fileinput-exists">
+                                                Change </span>
+                                            <input type="file" name="joiningLetter">
+                                        </span>
+                                                <a href="#" class="input-group-addon btn btn-sm red fileinput-exists"
+                                                   data-dismiss="fileinput">
+                                                    Remove </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Any other document</label>
+                                    <div class="col-md-5">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="input-group input-large">
+                                                <div class="form-control uneditable-input" data-trigger="fileinput">
+                                                    <i class="fa fa-file fileinput-exists"></i>&nbsp; <span
+                                                        class="fileinput-filename">
+                                            </span>
+                                                </div>
+                                                <span class="input-group-addon btn default btn-file">
+                                            <span class="fileinput-new">
+                                                Select file </span>
+                                            <span class="fileinput-exists">
+                                                Change </span>
+                                            <input type="file" name="contract">
+                                        </span>
+                                                <a href="#" class="input-group-addon btn btn-sm red fileinput-exists"
+                                                   data-dismiss="fileinput">
+                                                    Remove </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">ID Proof</label>
+                                    <div class="col-md-5">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="input-group input-large">
+                                                <div class="form-control uneditable-input" data-trigger="fileinput">
+                                                    <i class="fa fa-file fileinput-exists"></i>&nbsp; <span
+                                                        class="fileinput-filename">
+                                            </span>
+                                                </div>
+                                                <span class="input-group-addon btn default btn-file">
+                                            <span class="fileinput-new">
+                                                Select file </span>
+                                            <span class="fileinput-exists">
+                                                Change </span>
+                                            <input type="file" name="IDProof">
+                                        </span>
+                                                <a href="#" class="input-group-addon btn btn-sm red fileinput-exists"
+                                                   data-dismiss="fileinput">
+                                                    Remove </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div> 
 
                         <div class="form-actions">
                             <div class="row">
