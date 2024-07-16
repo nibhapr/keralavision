@@ -15,8 +15,8 @@ class Designation extends \Eloquent
     /**
      * @return mixed
      */
-    protected function department()
-    {
-        return $this->belongsTo(Department::class, 'deptID', 'id');
-    }
+    // protected function department()
+    // {
+    //     return $this->belongsTo(Department::class, 'deptID', 'id');
+    // }
 }

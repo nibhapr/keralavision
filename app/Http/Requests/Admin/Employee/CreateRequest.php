@@ -38,9 +38,7 @@ class CreateRequest extends FormRequest
             'offerLetter'   => 'max:8000',
             'joiningLetter' => 'max:8000',
             'contract'      => 'max:8000',
-            'IDProof'       => 'max:8000',
-            'department'       => 'required|exists:department,id',
-            'designation'       => 'required|exists:designation,id',
+            'IDProof'       => 'max:8000',         
         ];
     }
 

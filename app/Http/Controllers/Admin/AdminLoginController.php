@@ -48,7 +48,6 @@ class AdminLoginController extends AdminBaseController
             'email' => $request->email,
             'password' => $request->password
         ];
-
         if (Auth::guard('admin')->attempt($data, true)) {
 
             $user = admin();

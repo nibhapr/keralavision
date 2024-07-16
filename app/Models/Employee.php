@@ -10,7 +10,7 @@ class Employee extends \Eloquent implements Authenticatable
     use AuthenticableTrait;
 
     // Don't forget to fill this array
-    protected $fillable = ['employeeID','designation','fullName','fatherName','gender','email','password','date_of_birth','mobileNumber','localAddress','profileImage','joiningDate','permanentAddress'];
+    protected $fillable = ['employeeID','designation','fullName','fatherName','gender','email','password','date_of_birth','firmName','mobileNumber','localAddress','profileImage','joiningDate','permanentAddress'];
     protected $guarded = ['id'];
 
     protected $hidden = ['password'];
@@ -19,10 +19,10 @@ class Employee extends \Eloquent implements Authenticatable
     /**
      * @return mixed
      */
-    public function getDesignation()
-    {
-        return $this->belongsTo(Designation::class, 'designation', 'id');
-    }
+    // public function getDesignation()
+    // {
+    //     return $this->belongsTo(Designation::class, 'designation', 'id');
+    // }
 
     /**
      * @return mixed
@@ -30,14 +30,6 @@ class Employee extends \Eloquent implements Authenticatable
     public function getDocuments()
     {
         return $this->hasMany(Employee_document::class, 'employeeID', 'employeeID');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSalary()
-    {
-        return $this->hasMany(Salary::class, 'employeeID', 'employeeID');
     }
 
     /**

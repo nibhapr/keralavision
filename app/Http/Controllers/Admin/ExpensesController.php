@@ -11,6 +11,7 @@ use App\Http\Requests\Admin\Expenses\DeleteRequest;
 use App\Http\Requests\Admin\Expenses\IndexRequest;
 use App\Http\Requests\Admin\Expenses\UpdateRequest;
 use App\Models\Expense;
+use App\Models\Employee;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
@@ -78,7 +79,9 @@ class ExpensesController extends AdminBaseController
 
     public function create()
     {
-      
+        $this->employees = Employee::selectRaw('CONCAT(fullName, " (EmpID:", employeeID,")") as full_name, id')
+        ->where('status', '=', 'active')
+        ->pluck('full_name', 'id');
         $this->data['expensesAddActive'] = 'active';
         return View::make('admin.expenses.create', $this->data);
     }
@@ -91,6 +94,7 @@ class ExpensesController extends AdminBaseController
     public function store(CreateRequest $request)
     {
         $request->purchaseDate = Carbon::createFromFormat('d-m-Y', $request->purchaseDate)->format('Y-m-d');
+        $request["employee_id"] = $request->employeeId;
         $expense = Expense::create($request->toArray());
 
         if ($request->hasFile('bill')) {

@@ -15,7 +15,7 @@ class Expense extends Model
     use Sluggable, SluggableScopeHelpers;
 
     // Don't forget to fill this array
-    protected $fillable = ['itemName','purchaseFrom','purchaseDate','price'];
+    protected $fillable = ['itemName','purchaseFrom','purchaseDate','price', 'employee_id'];
 
 
     protected $appends = ['bill_url'];

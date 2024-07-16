@@ -6,10 +6,10 @@ body {
 
 .reg-block {
 	width: 380px;
-	padding: 20px;
-	margin: 60px auto;
+	padding: 40px;
+	margin: 190px auto;
 	background: #fff;
-	border-top: solid 2px #FB4506;
+	border-top: solid 2px #ff0000;
 }
 
 .reg-block h2,

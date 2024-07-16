@@ -1,31 +1,36 @@
-@extends('admin.adminlayouts.adminlayout')
 
-@section('head')
+
+<?php $__env->startSection('head'); ?>
 <!-- BEGIN PAGE LEVEL STYLES -->
-{!! HTML::style("assets/global/plugins/bootstrap-datepicker/css/datepicker3.css") !!}
-{!! HTML::style("assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css") !!}
-{!! HTML::style("assets/global/plugins/bootstrap-select/bootstrap-select.min.css") !!}
-{!! HTML::style("assets/global/plugins/select2/select2.css") !!}
-{!! HTML::style("assets/global/plugins/jquery-multi-select/css/multi-select.css") !!}
-<!-- BEGIN THEME STYLES -->
-@stop
+<?php echo HTML::style("assets/global/plugins/bootstrap-datepicker/css/datepicker3.css"); ?>
 
-@section('mainarea')
+<?php echo HTML::style("assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css"); ?>
+
+<?php echo HTML::style("assets/global/plugins/bootstrap-select/bootstrap-select.min.css"); ?>
+
+<?php echo HTML::style("assets/global/plugins/select2/select2.css"); ?>
+
+<?php echo HTML::style("assets/global/plugins/jquery-multi-select/css/multi-select.css"); ?>
+
+<!-- BEGIN THEME STYLES -->
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('mainarea'); ?>
 
 
 <!-- BEGIN PAGE HEADER-->
 <h3 class="page-title">
-    {{$pageTitle}} Claiming Details
+    <?php echo e($pageTitle); ?> Claiming Details
 </h3>
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
             <i class="fa fa-home"></i>
-            <a href="{{route('admin.dashboard.index')}}">Home</a>
+            <a href="<?php echo e(route('admin.dashboard.index')); ?>">Home</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="{{ route('admin.expenses.index') }}">expenses</a>
+            <a href="<?php echo e(route('admin.expenses.index')); ?>">expenses</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
@@ -40,9 +45,9 @@
     <div class="col-md-12">
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
 
-        {{--INLCUDE ERROR MESSAGE BOX--}}
-        @include('admin.common.error')
-        {{--END ERROR MESSAGE BOX--}}
+        
+        <?php echo $__env->make('admin.common.error', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        
 
 
         <div class="portlet box blue">
@@ -57,8 +62,9 @@
             <div class="portlet-body form">
 
                 <!-- BEGIN FORM-->
-                {!! Form::open(array('class'=>'form-horizontal form-bordered','method'=>'POST','files'=>true, 'id' =>
-                'expenses_store_form')) !!}
+                <?php echo Form::open(array('class'=>'form-horizontal form-bordered','method'=>'POST','files'=>true, 'id' =>
+                'expenses_store_form')); ?>
+
 
 
                 <div class="form-body">
@@ -68,8 +74,9 @@
                                 * </span>
                         </label>
                         <div class="col-md-6">
-                            {!! Form::select('employeeId', $employees,null,['class' => 'form-control input-xlarge
-                            select2me','data-placeholder'=>'Select Employee...']) !!}
+                            <?php echo Form::select('employeeId', $employees,null,['class' => 'form-control input-xlarge
+                            select2me','data-placeholder'=>'Select Employee...']); ?>
+
                         </div>
                     </div>
 
@@ -109,7 +116,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-2 control-label">Total Claim Amount:<span class="required"> * </span> {!! \App\Models\Setting::getCurrency($setting->currency)['symbol'] !!} {{$setting->currency}}</label>
+                        <label class="col-md-2 control-label">Total Claim Amount:<span class="required"> * </span> <?php echo \App\Models\Setting::getCurrency($setting->currency)['symbol']; ?> <?php echo e($setting->currency); ?></label>
 
                         <div class="col-md-6">
                             <input type="text" class="form-control" name="price" placeholder="Price of Item" value="">
@@ -285,7 +292,8 @@
                             </div>
                         </div>
                     </div>
-                    {!! Form::close() !!}
+                    <?php echo Form::close(); ?>
+
                     <!-- END FORM-->
 
                 </div>
@@ -297,17 +305,23 @@
     <!-- END PAGE CONTENT-->
 
 
-    @stop
+    <?php $__env->stopSection(); ?>
 
-    @section('footerjs')
+    <?php $__env->startSection('footerjs'); ?>
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    {!! HTML::script("assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js") !!}
-    {!! HTML::script("assets/admin/pages/scripts/components-pickers.js") !!}
-    {!! HTML::script("assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js") !!}
-    {!! HTML::script("assets/global/plugins/bootstrap-select/bootstrap-select.min.js") !!}
-    {!! HTML::script("assets/global/plugins/select2/select2.min.js") !!}
-    {!! HTML::script("assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js") !!}
+    <?php echo HTML::script("assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"); ?>
+
+    <?php echo HTML::script("assets/admin/pages/scripts/components-pickers.js"); ?>
+
+    <?php echo HTML::script("assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js"); ?>
+
+    <?php echo HTML::script("assets/global/plugins/bootstrap-select/bootstrap-select.min.js"); ?>
+
+    <?php echo HTML::script("assets/global/plugins/select2/select2.min.js"); ?>
+
+    <?php echo HTML::script("assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js"); ?>
+
     <!-- END PAGE LEVEL PLUGINS -->
     <script>
         jQuery(document).ready(function() {
@@ -316,7 +330,7 @@
 
         // Javascript function to update the company info and Bank Info
         function storeExpenses() {
-            var url = "{{ route('admin.expenses.store') }}";
+            var url = "<?php echo e(route('admin.expenses.store')); ?>";
             $.easyAjax({
                 type: 'POST',
                 url: url,
@@ -325,4 +339,5 @@
             });
         }
     </script>
-    @stop
+    <?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.adminlayouts.adminlayout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Milan\Desktop\Work\keralavision\resources\views/admin/expenses/create.blade.php ENDPATH**/ ?>

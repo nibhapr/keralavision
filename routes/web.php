@@ -63,26 +63,20 @@ Route::group(['middleware' => ['auth.admin'], 'prefix' => 'admin','namespace' =>
     Route::resource('departments', 'DepartmentsController',['as' => 'admin']);
     Route::get('ajax_expenses/',['as'=>'admin.ajax_expenses','uses'=> 'ExpensesController@ajax_expenses']);
     Route::resource('expenses', 'ExpensesController',['except' => ['show'],'as' => 'admin']);
-  
     Route::get('holidays/mark_sunday', 'HolidaysController@Sunday');
     Route::resource('holidays', 'HolidaysController',['as' => 'admin']);
-   
     Route::get('attendances/report/{attendances}', ['as'=>'admin.attendance.report','uses'=>'AttendancesController@report']);
     Route::get('attendances/ajax-attendance-list', ['as'=>'admin.attendance.ajax-attendance-list','uses'=>'AttendancesController@ajaxAttendanceList']);
     Route::post('attendances/export', ['as'=>'admin.attendance.export','uses'=>'AttendancesController@export']);
     Route::resource('attendances', 'AttendancesController',['as' => 'admin']);
-
     //    Routing or the leavetypes
     Route::get('leavetypes/ajax_list',['as'=>'admin.leavetypes.ajax_list','uses'=> 'LeavetypesController@ajaxLeaveType']);
     Route::resource('leavetypes', 'LeavetypesController',['except'=>['show'],'as' => 'admin']);
-
     //    Leave Applications routing
     Route::get('leave_applications/ajaxApplications',['as'=>'admin.leave_applications','uses'=> 'LeaveApplicationsController@ajaxApplications']);
     Route::resource('leave_applications', 'LeaveApplicationsController',['except'=>['create','store','edit'],'as' => 'admin']);
-
     //   Routing for setting
     Route::resource('settings', 'SettingsController',['only'=>['edit','update'],'as' => 'admin']);
-
     //    Salary Routing
     Route::get('add-salary-modal/{employeeID}',['as'=>'admin.add-salary-modal','uses'=>  'SalaryController@addSalaryModal']);
 
@@ -90,22 +84,15 @@ Route::group(['middleware' => ['auth.admin'], 'prefix' => 'admin','namespace' =>
 
     //    Profile Setting
     Route::resource('profile_settings', 'ProfileSettingsController',['only'=>['edit','update'],'as' => 'admin']);
-
     //   Notification Setting
-
     Route::post('ajax_update_notification',['as'=>'admin.ajax_update_notification','uses'=> 'NotificationSettingsController@ajax_update_notification']);
     Route::resource('notificationSettings', 'NotificationSettingsController',['only'=>['edit','update'],'as' => 'admin']);
-
     Route::post('ajax_update_email_setting',['as'=>'admin.ajax_update_email_setting','uses'=> 'EmailSettingsController@ajax_email_setting']);
     Route::resource('email_settings', 'EmailSettingsController',['only'=>['edit','update'],'as' => 'admin']);
-
     //  Notice Board
     Route::get('ajax_notices/',['as'=>'admin.ajax_notices','uses'=> 'NoticeboardsController@ajax_notices']);
     Route::resource('noticeboards', 'NoticeboardsController',['except'=>['show'],'as' => 'admin']);
-
-
     Route::get('update-new-version', ['as' => 'admin.updateVersion.index', 'uses' => 'AdminUpdateVersionController@index']);
-
 });
 Event::listen('auth.login', function($user)
 {

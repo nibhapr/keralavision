@@ -15,6 +15,7 @@ use App\Models\Designation;
 use App\Models\Employee;
 use App\Models\Employee_document;
 use App\Models\Salary;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 
@@ -48,7 +49,7 @@ class EmployeesController extends AdminBaseController
      */
     public function ajaxEmployees()
     {
-        $result = Employee::select('id', 'employeeID', 'profileImage', 'email', 'fullName', 'designation', 'date_of_birth', 'status');
+        $result = Employee::select('id', 'employeeID', 'profileImage', 'email', 'fullName','firmName', 'status');
                     // ->with('getDesignation:id,deptID,designation');
 
         return datatables()->eloquent($result)
@@ -56,21 +57,15 @@ class EmployeesController extends AdminBaseController
                 if(request()->search['value']) {
                     $query->where('employeeID', 'LIKE', '%'.request()->search['value'].'%')
                             ->orWhere('email', 'LIKE', '%'.request()->search['value'].'%')
-                            ->orWhere('fullName', 'LIKE', '%'.request()->search['value'].'%')
-                            ->orWhereHas('getDesignation', function($q) {
-                                $q->where('designation', 'LIKE', '%'.strtolower(request()->search['value']).'%');
-                            });
+                            ->orWhere('fullName', 'LIKE', '%'.request()->search['value'].'%');
+                           
                 }
             })
             ->editColumn('profileImage', function ($row) {
                 return '<img src="' . $row->profile_image_url . '" height="80px" />';
-            })
-            ->editColumn('designation', function ($row) {
-                return '<p>Department: <strong>' . (!is_null($row->getDesignation) ? $row->getDesignation->department->deptName : '-') . '</strong></p>
-                <p>Designation: <strong>' . (!is_null($row->getDesignation) ? $row->getDesignation->designation : '-') . '</strong></p>';
-            })
-            ->editColumn('date_of_birth', function ($row) {
-                return $row->workDuration($row->employeeID);
+            })       
+            ->editColumn('firmName', function ($row) {
+                return $row->firmName;
 
             })
             ->editColumn('status', function ($row) {
@@ -98,8 +93,7 @@ class EmployeesController extends AdminBaseController
     public function create()
     {
         
-        $this->department = Department::pluck('deptName', 'id');
-
+        $this->department = Department::pluck('deptName', 'id');        
         return View::make('admin.employees.create', $this->data);
     }
 
@@ -183,9 +177,9 @@ class EmployeesController extends AdminBaseController
     public function edit($id)
     {
         $this->employeesActive = 'active';
-        $this->department = Department::pluck('deptName', 'id');
+        // $this->department = Department::pluck('deptName', 'id');
         $this->employee = Employee::where('employeeID', '=', $id)->get()->first();
-        $this->designation = Designation::find($this->employee->designation);
+        // $this->designation = Designation::find($this->employee->designation);
 
         $doc = [];
 

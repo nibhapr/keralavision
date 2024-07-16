@@ -1,30 +1,33 @@
-@extends('admin.adminlayouts.adminlayout')
 
-@section('head')
+
+<?php $__env->startSection('head'); ?>
     <!-- BEGIN PAGE LEVEL STYLES -->
-    {!! HTML::style("assets/global/plugins/select2/select2.css") !!}
-    {!! HTML::style("assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css") !!}
+    <?php echo HTML::style("assets/global/plugins/select2/select2.css"); ?>
+
+    <?php echo HTML::style("assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"); ?>
+
     <!-- END PAGE LEVEL STYLES -->
 
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('mainarea')
+<?php $__env->startSection('mainarea'); ?>
 
 
     <!-- BEGIN PAGE HEADER-->
     <h3 class="page-title">
-        {{$pageTitle}}
+        <?php echo e($pageTitle); ?>
+
         <small>Operator List</small>
     </h3>
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>
                 <i class="fa fa-home"></i>
-                <a href="{{route('admin.dashboard.index')}}">Home</a>
+                <a href="<?php echo e(route('admin.dashboard.index')); ?>">Home</a>
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="{{route('admin.employees.index')}}">Operators</a>
+                <a href="<?php echo e(route('admin.employees.index')); ?>">Operators</a>
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
@@ -41,12 +44,12 @@
           
             <div id="load">
 
-                @if(Session::get('success'))
-                    <div class="alert alert-success">{!! Session::get('success') !!}</div>
-                @endif
+                <?php if(Session::get('success')): ?>
+                    <div class="alert alert-success"><?php echo Session::get('success'); ?></div>
+                <?php endif; ?>
 
             </div>
-            <a href="{{route('admin.employees.create')}}" class="btn green">
+            <a href="<?php echo e(route('admin.employees.create')); ?>" class="btn green">
                 Add New Operator <i class="fa fa-plus"></i>
             </a>
 
@@ -104,20 +107,23 @@
     </div>
     <!-- END PAGE CONTENT-->
 
-    {{--DELETE MODAL CALLING--}}
-    @include('admin.include.delete-modal')
-    {{--DELETE MODAL CALLING END--}}
+    
+    <?php echo $__env->make('admin.include.delete-modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    
 
-@stop
+<?php $__env->stopSection(); ?>
 
 
-@section('footerjs')
+<?php $__env->startSection('footerjs'); ?>
 
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    {!! HTML::script("assets/global/plugins/select2/select2.min.js") !!}
-    {!! HTML::script("assets/global/plugins/datatables/media/js/jquery.dataTables.min.js") !!}
-    {!! HTML::script("assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js") !!}
+    <?php echo HTML::script("assets/global/plugins/select2/select2.min.js"); ?>
+
+    <?php echo HTML::script("assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"); ?>
+
+    <?php echo HTML::script("assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"); ?>
+
     <!-- END PAGE LEVEL PLUGINS -->
 
     <script>
@@ -128,7 +134,7 @@
             "bDestroy": true,
             "order": [[0, "desc"]],
 
-            "ajax": "{{ route("admin.employees.ajaxlist") }}",
+            "ajax": "<?php echo e(route("admin.employees.ajaxlist")); ?>",
             "aoColumns": [
                 {'sClass': 'center', 'bSortable': true},
                 {'sClass': 'center', 'bSortable': false},
@@ -167,10 +173,10 @@
 
             $('#deleteModal').find("#delete").off().on("click", function () {
 
-                var url = "{{ route('admin.employees.destroy',':id') }}";
+                var url = "<?php echo e(route('admin.employees.destroy',':id')); ?>";
                 url = url.replace(':id', id);
 
-                var token = "{{ csrf_token() }}";
+                var token = "<?php echo e(csrf_token()); ?>";
 
                 $.easyAjax({
                     type: 'DELETE',
@@ -189,4 +195,6 @@
         }
 
     </script>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.adminlayouts.adminlayout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Milan\Desktop\Work\keralavision\resources\views/admin/employees/index.blade.php ENDPATH**/ ?>

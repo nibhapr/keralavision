@@ -1,14 +1,16 @@
-@extends('admin.adminlayouts.adminlayout')
 
-@section('head')
+
+<?php $__env->startSection('head'); ?>
 
     <!-- BEGIN PAGE LEVEL STYLES -->
-    {!! HTML::style('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') !!}
-    {!! HTML::style('assets/global/plugins/bootstrap-datepicker/css/datepicker3.css') !!}
-    <!-- END PAGE LEVEL STYLES -->
-@stop
+    <?php echo HTML::style('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css'); ?>
 
-@section('mainarea')
+    <?php echo HTML::style('assets/global/plugins/bootstrap-datepicker/css/datepicker3.css'); ?>
+
+    <!-- END PAGE LEVEL STYLES -->
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('mainarea'); ?>
 
     <!-- BEGIN PAGE HEADER-->
     <h3 class="page-title">
@@ -22,7 +24,7 @@
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="{{route('admin.employees.index')}}">Employees</a>
+                <a href="<?php echo e(route('admin.employees.index')); ?>">Employees</a>
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
@@ -41,23 +43,23 @@
                 <span id="load_notification"></span>
                 <input type="checkbox" onchange="ToggleEmailNotification('employee_add');return false;"
                        class="make-switch"
-                       name="employee_add" @if($setting->employee_add==1)checked
-                       @endif data-on-color="success" data-on-text="Yes" data-off-text="No" data-off-color="danger">
+                       name="employee_add" <?php if($setting->employee_add==1): ?>checked
+                       <?php endif; ?> data-on-color="success" data-on-text="Yes" data-off-text="No" data-off-color="danger">
                 <strong>Email Notification</strong><br>
 
 
             </div>
         </div>
 
-        {{--INLCUDE ERROR MESSAGE BOX--}}
-        @include('admin.common.error')
-        {{--END ERROR MESSAGE BOX--}}
+        
+        <?php echo $__env->make('admin.common.error', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        
         <hr>
         <div class="clearfix">
         </div>
-        {!!
-        Form::open(array('route'=>"admin.employees.store",'id'=>'addEmployeeForm','class'=>'form-horizontal','method'=>'POST','files'
-        => true)) !!}
+        <?php echo Form::open(array('route'=>"admin.employees.store",'id'=>'addEmployeeForm','class'=>'form-horizontal','method'=>'POST','files'
+        => true)); ?>
+
         <div class="row ">
             <div class="col-md-6 col-sm-6">
                 <div class="portlet box purple-wisteria">
@@ -105,7 +107,7 @@
                                 <label class="col-md-3 control-label">Name <span class="required">* </span></label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="fullName" placeholder="Employee Name"
-                                           value="{{ \Illuminate\Support\Facades\Request::old('fullName') }}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('fullName')); ?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -120,7 +122,7 @@
                                     <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy"
                                          data-date-viewmode="years">
                                         <input type="text" class="form-control" name="date_of_birth" readonly
-                                               value="{{ \Illuminate\Support\Facades\Request::old('date_of_birth') }}">
+                                               value="<?php echo e(\Illuminate\Support\Facades\Request::old('date_of_birth')); ?>">
                                         <span class="input-group-btn">
                                     <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
                                 </span>
@@ -130,8 +132,9 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Gender</label>
                                 <div class="col-md-9">
-                                    {!! Form::select('gender', array('male' => 'Male', 'female' => 'Female'),
-                                    \Illuminate\Support\Facades\Request::old('gender'),array('class'=>'form-control')) !!}
+                                    <?php echo Form::select('gender', array('male' => 'Male', 'female' => 'Female'),
+                                    \Illuminate\Support\Facades\Request::old('gender'),array('class'=>'form-control')); ?>
+
                                 </div>
                             </div>
 
@@ -140,7 +143,7 @@
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="mobileNumber"
                                            placeholder="Contact Number"
-                                           value="{{\Illuminate\Support\Facades\Request::old('mobileNumber')}}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('mobileNumber')); ?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -148,14 +151,14 @@
                                     Address</label>
                                 <div class="col-md-9">
                             <textarea class="form-control" name="localAddress"
-                                      rows="3">{{\Illuminate\Support\Facades\Request::old('localAddress')}}</textarea>
+                                      rows="3"><?php echo e(\Illuminate\Support\Facades\Request::old('localAddress')); ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Permanent Address</label>
                                 <div class="col-md-9">
                             <textarea class="form-control" name="permanentAddress"
-                                      rows="3">{{\Illuminate\Support\Facades\Request::old('permanentAddress')}}</textarea>
+                                      rows="3"><?php echo e(\Illuminate\Support\Facades\Request::old('permanentAddress')); ?></textarea>
                                 </div>
                             </div>
 
@@ -164,7 +167,7 @@
                                 <label class="col-md-3 control-label">Email<span class="required">* </span></label>
                                 <div class="col-md-9">
                                     <input type="text" name="email" class="form-control"
-                                           value="{{ \Illuminate\Support\Facades\Request::old('email') }}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('email')); ?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -172,7 +175,7 @@
                                 <div class="col-md-9">
                                     <input type="hidden" name="oldpassword">
                                     <input type="password" name="password" class="form-control"
-                                           value="{{ \Illuminate\Support\Facades\Request::old('password') }}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('password')); ?>">
                                 </div>
                             </div>
 
@@ -197,7 +200,7 @@
                                         class="required">* </span></label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="employeeID" placeholder="Employee ID"
-                                           value="{{\Illuminate\Support\Facades\Request::old('employeeID')}}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('employeeID')); ?>">
                                 </div>
                                
                             </div>
@@ -206,14 +209,15 @@
                                         class="required">* </span></label>
                             <div class="col-md-9">
                                     <input type="text" class="form-control" name="firmName" placeholder="Firm Name"
-                                           value="{{\Illuminate\Support\Facades\Request::old('firmName')}}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('firmName')); ?>">
                                 </div>
                             </div>
                             <!-- <div class="form-group">
                                 <label class="col-md-3 control-label">Department<span class="required">* </span></label>
                                 <div class="col-md-9">
-                                    {!! Form::select('department', $department,null,['class' => 'form-control
-                                    select2me','id'=>'department','onchange'=>'dept();return false;']) !!}
+                                    <?php echo Form::select('department', $department,null,['class' => 'form-control
+                                    select2me','id'=>'department','onchange'=>'dept();return false;']); ?>
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -232,7 +236,7 @@
                                     <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy"
                                          data-date-viewmode="years">
                                         <input type="text" class="form-control" name="joiningDate" readonly
-                                               value="{{\Illuminate\Support\Facades\Request::old('joiningDate')}}">
+                                               value="<?php echo e(\Illuminate\Support\Facades\Request::old('joiningDate')); ?>">
                                         <span class="input-group-btn">
                                     <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
                                 </span>
@@ -244,7 +248,7 @@
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="currentSalary"
                                            placeholder="Current Salary"
-                                           value="{{ \Illuminate\Support\Facades\Request::old('currentSalary') }}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('currentSalary')); ?>">
                                 </div>
                             </div> -->
                         </div>
@@ -267,7 +271,7 @@
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="accountName"
                                            placeholder="Account Holder Name"
-                                           value="{{\Illuminate\Support\Facades\Request::old('accountName')}}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('accountName')); ?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -275,35 +279,35 @@
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="accountNumber"
                                            placeholder="Account Number"
-                                           value="{{\Illuminate\Support\Facades\Request::old('accountNumber')}}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('accountNumber')); ?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Bank Name</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="bank" placeholder="BANK Name"
-                                           value="{{\Illuminate\Support\Facades\Request::old('bank')}}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('bank')); ?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">IFSC Code</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="ifsc" placeholder="IFSC Code"
-                                           value="{{\Illuminate\Support\Facades\Request::old('ifsc')}}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('ifsc')); ?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">PAN Number </label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="pan" placeholder="PAN Number"
-                                           value="{{\Illuminate\Support\Facades\Request::old('pan')}}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('pan')); ?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Branch</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="branch" placeholder="BRANCH"
-                                           value="{{\Illuminate\Support\Facades\Request::old('branch')}}">
+                                           value="<?php echo e(\Illuminate\Support\Facades\Request::old('branch')); ?>">
                                 </div>
                             </div>
                         </div>
@@ -313,7 +317,7 @@
             </div>
         </div>
         <div class="clearfix">
-            {{---------------Documents------------------}}
+            
             <div class="row ">
                 <div class="col-md-12 col-sm-12">
                     <div class="portlet box purple-wisteria">
@@ -480,18 +484,22 @@
         </form>
     <hr>
 
-@stop
+<?php $__env->stopSection(); ?>
 
 
 
-@section('footerjs')
+<?php $__env->startSection('footerjs'); ?>
 
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    {!! HTML::script('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') !!}
-    {!! HTML::script('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') !!}
-    {!! HTML::script("assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js") !!}
-    {!! HTML::script('assets/admin/pages/scripts/components-pickers.js') !!}
+    <?php echo HTML::script('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js'); ?>
+
+    <?php echo HTML::script('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'); ?>
+
+    <?php echo HTML::script("assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"); ?>
+
+    <?php echo HTML::script('assets/admin/pages/scripts/components-pickers.js'); ?>
+
     <!-- END PAGE LEVEL PLUGINS -->
 
 
@@ -504,7 +512,7 @@
         });
 
         function dept() {
-            $.getJSON("{{ route('admin.departments.ajax_designation')}}",
+            $.getJSON("<?php echo e(route('admin.departments.ajax_designation')); ?>",
                 {deptID: $('#department').val()},
                 function (data) {
                     var model = $('#designation');
@@ -517,7 +525,7 @@
 
         // Show Add Edit Function
         function addEmployee() {
-            var url = "{{ route('admin.employees.store') }}";
+            var url = "<?php echo e(route('admin.employees.store')); ?>";
             $.easyAjax({
                 type: 'POST',
                 url: url,
@@ -527,4 +535,6 @@
         }
 
     </script>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.adminlayouts.adminlayout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Milan\Desktop\Work\keralavision\resources\views/admin/employees/create.blade.php ENDPATH**/ ?>

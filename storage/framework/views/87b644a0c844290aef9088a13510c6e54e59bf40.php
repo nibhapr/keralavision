@@ -1,14 +1,16 @@
-@extends('admin.adminlayouts.adminlayout')
 
-@section('head')
+
+<?php $__env->startSection('head'); ?>
 
     <!-- BEGIN PAGE LEVEL STYLES -->
-    {!! HTML::style('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') !!}
-    {!! HTML::style('assets/global/plugins/bootstrap-datepicker/css/datepicker3.css') !!}
-    <!-- END PAGE LEVEL STYLES -->
-@stop
+    <?php echo HTML::style('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css'); ?>
 
-@section('mainarea')
+    <?php echo HTML::style('assets/global/plugins/bootstrap-datepicker/css/datepicker3.css'); ?>
+
+    <!-- END PAGE LEVEL STYLES -->
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('mainarea'); ?>
 
     <!-- BEGIN PAGE HEADER-->
     <h3 class="page-title" xmlns="http://www.w3.org/1999/html">
@@ -22,7 +24,7 @@
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="{{route('admin.employees.index')}}">Operator</a>
+                <a href="<?php echo e(route('admin.employees.index')); ?>">Operator</a>
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
@@ -43,7 +45,7 @@
                     </div>
                     <div class="actions">
 
-                        <a href="javascript:;" onclick="UpdateDetails('{!! $employee->employeeID !!}','personal')"
+                        <a href="javascript:;" onclick="UpdateDetails('<?php echo $employee->employeeID; ?>','personal')"
                            class="btn btn-sm btn-default ">
                             <i class="fa fa-save"></i> Save </a>
                     </div>
@@ -53,27 +55,29 @@
                 <div class="portlet-body">
                     <div id="personal_alert"></div>
 
-                    {{--------------------Personal Info Form--------------------------------------------}}
+                    
 
-                    {!! Form::open(['method' => 'PUT','route'=> ['admin.employees.update', $employee->employeeID],'class' =>
-                    'form-horizontal','id' => 'personal_details_form','files'=>true]) !!}
+                    <?php echo Form::open(['method' => 'PUT','route'=> ['admin.employees.update', $employee->employeeID],'class' =>
+                    'form-horizontal','id' => 'personal_details_form','files'=>true]); ?>
+
                     <input type="hidden" name="updateType" class="form-control" value="personalInfo">
-                    @if(Session::get('successPersonal'))
+                    <?php if(Session::get('successPersonal')): ?>
                         <div class="alert alert-success"><i
-                                class="fa fa-check"></i> {!! Session::get('successPersonal') !!}
+                                class="fa fa-check"></i> <?php echo Session::get('successPersonal'); ?>
+
                         </div>
-                    @endif
+                    <?php endif; ?>
 
 
-                    @if (Session::get('errorPersonal'))
+                    <?php if(Session::get('errorPersonal')): ?>
 
                         <div class="alert alert-danger alert-dismissable ">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                            @foreach (Session::get('errorPersonal') as $error)
-                                <p><strong><i class="fa fa-warning"></i></strong> {{ $error }}</p>
-                            @endforeach
+                            <?php $__currentLoopData = Session::get('errorPersonal'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <p><strong><i class="fa fa-warning"></i></strong> <?php echo e($error); ?></p>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
-                    @endif
+                    <?php endif; ?>
 
                     <div class="form-body">
                         <div class="form-group ">
@@ -81,8 +85,8 @@
                             <div class="col-md-9">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                     <div class="fileinput-new thumbnail">
-                                        <img src="{{$employee->profile_image_url}}"/>
-                                        <input type="hidden" name="hiddenImage" value="{{$employee->profileImage}}">
+                                        <img src="<?php echo e($employee->profile_image_url); ?>"/>
+                                        <input type="hidden" name="hiddenImage" value="<?php echo e($employee->profileImage); ?>">
                                     </div>
                                     <div class="fileinput-preview fileinput-exists thumbnail">
                                     </div>
@@ -109,14 +113,14 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Name<span class="required">* </span></label>
                             <div class="col-md-9">
-                                <input type="text" name="fullName" class="form-control" value="{{$employee->fullName}}">
+                                <input type="text" name="fullName" class="form-control" value="<?php echo e($employee->fullName); ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Father's Name</label>
                             <div class="col-md-9">
                                 <input type="text" name="fatherName" class="form-control"
-                                       value="{{$employee->fatherName}}">
+                                       value="<?php echo e($employee->fatherName); ?>">
                             </div>
                         </div>
                         <div class="form-group">
@@ -125,7 +129,7 @@
                                 <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy"
                                      data-date-viewmode="years">
                                     <input type="text" class="form-control" name="date_of_birth" readonly
-                                           value="@if(empty($employee->date_of_birth))@else{{date('d-m-Y',strtotime($employee->date_of_birth))}}@endif">
+                                           value="<?php if(empty($employee->date_of_birth)): ?><?php else: ?><?php echo e(date('d-m-Y',strtotime($employee->date_of_birth))); ?><?php endif; ?>">
                                     <span class="input-group-btn">
                                     <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
                                 </span>
@@ -137,8 +141,8 @@
                             <div class="col-md-9">
                                 <select class="form-control" name="gender">
 
-                                    <option value="male" @if($employee->gender=='male') selected @endif>Male</option>
-                                    <option value="female" @if($employee->gender=='female') selected @endif>Female
+                                    <option value="male" <?php if($employee->gender=='male'): ?> selected <?php endif; ?>>Male</option>
+                                    <option value="female" <?php if($employee->gender=='female'): ?> selected <?php endif; ?>>Female
                                     </option>
                                 </select>
                             </div>
@@ -148,28 +152,28 @@
                             <label class="col-md-3 control-label">Phone</label>
                             <div class="col-md-9">
                                 <input type="text" name="mobileNumber" class="form-control"
-                                       value="{{$employee->mobileNumber}}">
+                                       value="<?php echo e($employee->mobileNumber); ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Address</label>
                             <div class="col-md-9">
                             <textarea name="localAddress" class="form-control"
-                                      rows="3">{{$employee->localAddress}}</textarea>
+                                      rows="3"><?php echo e($employee->localAddress); ?></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Permanent Address</label>
                             <div class="col-md-9">
                             <textarea name="permanentAddress" class="form-control"
-                                      rows="3">{{$employee->permanentAddress}}</textarea>
+                                      rows="3"><?php echo e($employee->permanentAddress); ?></textarea>
                             </div>
                         </div>
                         <h4><strong>Account Login</strong></h4>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Email<span class="required">* </span></label>
                             <div class="col-md-9">
-                                <input type="text" name="email" class="form-control" value="{{$employee->email}}">
+                                <input type="text" name="email" class="form-control" value="<?php echo e($employee->email); ?>">
                             </div>
                         </div>
                         <div class="form-group">
@@ -179,7 +183,8 @@
                             </div>
                         </div>
                     </div>
-                    {!! Form::close() !!}
+                    <?php echo Form::close(); ?>
+
                 </div>
             </div>
         </div>
@@ -191,15 +196,16 @@
                     </div>
                     <div class="actions">
                         <a href="javascript:;"
-                           onclick="UpdateDetails('{!! $employee->employeeID !!}','company');return false"
+                           onclick="UpdateDetails('<?php echo $employee->employeeID; ?>','company');return false"
                            class="demo-loading-btn-ajax btn btn-sm btn-default ">
                             <i class="fa fa-save"></i> Save </a>
                     </div>
                 </div>
                 <div class="portlet-body">
 
-                    {{--------------------Company Form--------------------------------------------}}
-                    {!! Form::open(['method' => 'PUT','class' => 'form-horizontal','id' => 'company_details_form']) !!}
+                    
+                    <?php echo Form::open(['method' => 'PUT','class' => 'form-horizontal','id' => 'company_details_form']); ?>
+
                     <input type="hidden" name="updateType" class="form-control" value="company">
                     <div id="company_alert">
 
@@ -210,7 +216,7 @@
                             <label class="col-md-3 control-label">Employee ID<span class="required">* </span></label>
                             <div class="col-md-9">
                                 <input type="text" name="employeeID" class="form-control" readonly
-                                       value="{{$employee->employeeID}}">
+                                       value="<?php echo e($employee->employeeID); ?>">
                             </div>
                         </div>
                         
@@ -220,7 +226,7 @@
                                 <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy"
                                      data-date-viewmode="years">
                                     <input type="text" class="form-control" name="joiningDate" readonly
-                                           value="@if(empty($employee->joiningDate))00-00-0000 @else {{date('d-m-Y',strtotime($employee->joiningDate))}} @endif">
+                                           value="<?php if(empty($employee->joiningDate)): ?>00-00-0000 <?php else: ?> <?php echo e(date('d-m-Y',strtotime($employee->joiningDate))); ?> <?php endif; ?>">
                                     <span class="input-group-btn">
                                     <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
                                 </span>
@@ -233,7 +239,7 @@
                                 <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy"
                                      data-date-viewmode="years">
                                     <input type="text" class="form-control" name="exit_date" readonly
-                                           value="@if(empty($employee->exit_date)) @else {{date('d-m-Y',strtotime($employee->exit_date))}} @endif">
+                                           value="<?php if(empty($employee->exit_date)): ?> <?php else: ?> <?php echo e(date('d-m-Y',strtotime($employee->exit_date))); ?> <?php endif; ?>">
                                     <span class="input-group-btn">
                                     <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
                                 </span>
@@ -244,8 +250,8 @@
                             <label class="control-label col-md-3">Status</label>
                             <div class="col-md-3">
                                 <input type="checkbox" value="active" onchange="remove_exit();" class="make-switch"
-                                       name="status" @if($employee->status=='active')checked
-                                       @endif data-on-color="success" data-on-text="Active" data-off-text="Inactive"
+                                       name="status" <?php if($employee->status=='active'): ?>checked
+                                       <?php endif; ?> data-on-color="success" data-on-text="Active" data-off-text="Inactive"
                                        data-off-color="danger">
                             </div>
                             <div class="col-md-6">
@@ -256,10 +262,11 @@
                         <hr>
                      
                     </div>
-                    {!! Form::close() !!}
+                    <?php echo Form::close(); ?>
 
 
-                    {{----------------Company Form end -------------}}
+
+                    
 
                 </div>
             </div>
@@ -270,15 +277,16 @@
                         <i class="fa fa-calendar"></i>Bank Account Details
                     </div>
                     <div class="actions">
-                        <a href="javascript:;" onclick="UpdateDetails('{{$employee->employeeID}}','bank');return false"
+                        <a href="javascript:;" onclick="UpdateDetails('<?php echo e($employee->employeeID); ?>','bank');return false"
                            class="demo-loading-btn-ajax btn btn-sm btn-default ">
                             <i class="fa fa-save"></i> Save </a>
                     </div>
                 </div>
                 <div class="portlet-body">
 
-                    {{--------------------Bank Account Form--------------------------------------------}}
-                    {!! Form::open(['method' => 'PUT','class' => 'form-horizontal','id' => 'bank_details_form']) !!}
+                    
+                    <?php echo Form::open(['method' => 'PUT','class' => 'form-horizontal','id' => 'bank_details_form']); ?>
+
                     <input type="hidden" name="updateType" class="form-control" value="bank">
 
                     <div id="bank_alert"></div>
@@ -287,35 +295,35 @@
                             <label class="col-md-3 control-label">Account Holder Name</label>
                             <div class="col-md-9">
                                 <input type="text" name="accountName" class="form-control"
-                                       value="{{$bank_details->accountName ?? ''}}">
+                                       value="<?php echo e($bank_details->accountName ?? ''); ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Account Number</label>
                             <div class="col-md-9">
                                 <input type="text" name="accountNumber" class="form-control"
-                                       value="{{$bank_details->accountNumber ?? ''}}">
+                                       value="<?php echo e($bank_details->accountNumber ?? ''); ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Bank Name</label>
                             <div class="col-md-9">
                                 <input type="text" name="bank" class="form-control"
-                                       value="{{$bank_details->bank ?? ''}}">
+                                       value="<?php echo e($bank_details->bank ?? ''); ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">IFSC Code</label>
                             <div class="col-md-9">
                                 <input type="text" name="ifsc" class="form-control"
-                                       value="{{$bank_details->ifsc ?? ''}}">
+                                       value="<?php echo e($bank_details->ifsc ?? ''); ?>">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label">PAN Number</label>
                             <div class="col-md-9">
-                                <input type="text" name="pan" class="form-control" value="{{$bank_details->pan ?? ''}}">
+                                <input type="text" name="pan" class="form-control" value="<?php echo e($bank_details->pan ?? ''); ?>">
                             </div>
                         </div>
 
@@ -323,12 +331,13 @@
                             <label class="col-md-3 control-label">Branch</label>
                             <div class="col-md-9">
                                 <input type="text" name="branch" class="form-control"
-                                       value="{{$bank_details->branch ?? '' }}">
+                                       value="<?php echo e($bank_details->branch ?? ''); ?>">
                             </div>
                         </div>
                     </div>
-                    {!! Form::close() !!}
-                    {{-------------------Bank Account Form end-----------------------------------------}}
+                    <?php echo Form::close(); ?>
+
+                    
 
 
                 </div>
@@ -344,7 +353,7 @@
                             <i class="fa fa-calendar"></i>Documents
                         </div>
                         <div class="actions">
-                            <button onclick="UpdateDetails('{!! $employee->employeeID !!}','documents')"
+                            <button onclick="UpdateDetails('<?php echo $employee->employeeID; ?>','documents')"
                                     class="btn btn-sm btn-default ">
                                 <i class="fa fa-save"></i> Save
                             </button>
@@ -352,24 +361,23 @@
                     </div>
                     <div class="portlet-body">
                         <div class="portlet-body">
-                            {{--------------------Documents Info Form--------------------------------------------}}
+                            
 
-                            {!! Form::open(['method' => 'PUT','route'=> ['admin.employees.update',
+                            <?php echo Form::open(['method' => 'PUT','route'=> ['admin.employees.update',
                             $employee->employeeID],'class' => 'form-horizontal','id' =>
-                            'documents_details_form','files'=>true]) !!}
+                            'documents_details_form','files'=>true]); ?>
+
                             <input type="hidden" name="updateType" class="form-control" value="documents">
                             <div id="documents_alert">
 
                             </div>
-                            @if(Session::get('successDocuments'))
-                                <div class="alert alert-success"><i class="fa fa-check"></i> {!!
-                            Session::get('successDocuments') !!}</div>
-                            @endif
+                            <?php if(Session::get('successDocuments')): ?>
+                                <div class="alert alert-success"><i class="fa fa-check"></i> <?php echo Session::get('successDocuments'); ?></div>
+                            <?php endif; ?>
 
-                            @if(Session::get('errorDocuments'))
-                                <div class="alert alert-danger"><i class="fa fa-warning"></i> {!! Session::get('errorDocuments')
-                            !!}</div>
-                            @endif
+                            <?php if(Session::get('errorDocuments')): ?>
+                                <div class="alert alert-danger"><i class="fa fa-warning"></i> <?php echo Session::get('errorDocuments'); ?></div>
+                            <?php endif; ?>
 
                             <div class="form-body">
                                 <div class="form-group">
@@ -396,11 +404,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        @if(isset($documents['resume']))
-                                            <a href="{{ $documents['resume'] }}" target="_blank"
+                                        <?php if(isset($documents['resume'])): ?>
+                                            <a href="<?php echo e($documents['resume']); ?>" target="_blank"
                                                class="btn btn-sm purple">View
                                                 Resume</a>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -427,10 +435,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        @if(isset($documents['offerLetter']))
-                                            <a href="{{ $documents['offerLetter'] }}" target="_blank"
+                                        <?php if(isset($documents['offerLetter'])): ?>
+                                            <a href="<?php echo e($documents['offerLetter']); ?>" target="_blank"
                                                class="btn btn-sm purple">Offer Letter</a>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -457,10 +465,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        @if(isset($documents['joiningLetter']))
-                                            <a href="{{ $documents['joiningLetter'] }}" target="_blank"
+                                        <?php if(isset($documents['joiningLetter'])): ?>
+                                            <a href="<?php echo e($documents['joiningLetter']); ?>" target="_blank"
                                                class="btn btn-sm purple">View Joining Letter</a>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -487,10 +495,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        @if(isset($documents['contract']))
-                                            <a href="{{ $documents['contract'] }}" target="_blank"
+                                        <?php if(isset($documents['contract'])): ?>
+                                            <a href="<?php echo e($documents['contract']); ?>" target="_blank"
                                                class="btn btn-sm purple">View Contract</a>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -517,11 +525,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        @if(isset($documents['IDProof']))
-                                            <a href="{{ $documents['IDProof'] }}" target="_blank"
+                                        <?php if(isset($documents['IDProof'])): ?>
+                                            <a href="<?php echo e($documents['IDProof']); ?>" target="_blank"
                                                class="btn btn-sm purple">View
                                                 ID Proof</a>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -536,19 +544,23 @@
         </div>
 
     </div>
-    @include('admin.include.delete-modal')
-    @include('include.show-modal')
-    {{------------------------------------END NEW SALARY ADD MODALS--------------------------------------}}
+    <?php echo $__env->make('admin.include.delete-modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('include.show-modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    
 
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('footerjs')
+<?php $__env->startSection('footerjs'); ?>
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    {!! HTML::script('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') !!}
-    {!! HTML::script("assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js") !!}
-    {!! HTML::script('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') !!}
-    {!! HTML::script('assets/admin/pages/scripts/components-pickers.js') !!}
+    <?php echo HTML::script('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js'); ?>
+
+    <?php echo HTML::script("assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"); ?>
+
+    <?php echo HTML::script('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'); ?>
+
+    <?php echo HTML::script('assets/admin/pages/scripts/components-pickers.js'); ?>
+
 
     <!-- END PAGE LEVEL PLUGINS -->
 
@@ -560,13 +572,13 @@
 
         function dept() {
 
-            $.getJSON("{{ route('admin.departments.ajax_designation')}}",
+            $.getJSON("<?php echo e(route('admin.departments.ajax_designation')); ?>",
                 {deptID: $('#department').val()},
                 function (data) {
                     var model = $('#designation');
                     model.empty();
                     var selected = '';
-                    var match = '{{ $employee->designation ?? '' }}';
+                    var match = '<?php echo e($employee->designation ?? ''); ?>';
                     $.each(data, function (index, element) {
                         if (element.id == match) selected = 'selected';
                         else selected = '';
@@ -582,7 +594,7 @@
             var form_id = '#' + type + '_details_form';
             var alert_div = '#' + type + '_alert';
 
-            var url = "{{ route('admin.employees.update',':id') }}";
+            var url = "<?php echo e(route('admin.employees.update',':id')); ?>";
             url = url.replace(':id', id);
             $.easyAjax({
                 type: 'POST',
@@ -595,7 +607,7 @@
 
         // Add New Salary
         function saveSalary(id) {
-            var url = "{{ route('admin.salary.store') }}";
+            var url = "<?php echo e(route('admin.salary.store')); ?>";
             url = url.replace(':id', id);
             $.easyAjax({
                 type: 'POST',
@@ -614,7 +626,7 @@
         // Show Salary Modal
         function showSalary(id) {
             $('#showModal .modal-dialog').removeClass("modal-md").addClass("modal-lg");
-            var url = "{{ route('admin.add-salary-modal',[':id']) }}";
+            var url = "<?php echo e(route('admin.add-salary-modal',[':id'])); ?>";
             url = url.replace(':id', id);
             $.ajaxModal('#showModal', url);
             $('#showModal_div').removeClass("modal-dialog modal-lg").addClass("modal-dialog modal-md");
@@ -629,10 +641,10 @@
 
             $('#deleteModal').find("#delete").off().on("click", function () {
 
-                var url = "{{ route('admin.salary.destroy',':id') }}";
+                var url = "<?php echo e(route('admin.salary.destroy',':id')); ?>";
                 url = url.replace(':id', id);
 
-                var token = "{{ csrf_token() }}";
+                var token = "<?php echo e(csrf_token()); ?>";
 
                 $.easyAjax({
                     type: 'DELETE',
@@ -664,11 +676,13 @@
         });
     </script>
 
-    @if(Session::get('successDocuments'))
-        {{--Move to bottom of page if success comes from documents--}}
+    <?php if(Session::get('successDocuments')): ?>
+        
         <script>
             $("html, body").animate({scrollTop: $(document).height()}, 2000);
         </script>
-    @endif
+    <?php endif; ?>
 
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.adminlayouts.adminlayout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Milan\Desktop\Work\keralavision\resources\views/admin/employees/edit.blade.php ENDPATH**/ ?>
