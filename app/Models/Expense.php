@@ -1,6 +1,5 @@
 <?php
 namespace App\Models;
-
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;

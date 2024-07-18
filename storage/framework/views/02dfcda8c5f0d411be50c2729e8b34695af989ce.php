@@ -14,4 +14,4 @@
         </div>
     </div>
 </div>
-<?php /**PATH C:\Users\Milan\Desktop\Work\keralavision\resources\views/include/show-modal.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\keralavision\resources\views/include/show-modal.blade.php ENDPATH**/ ?>

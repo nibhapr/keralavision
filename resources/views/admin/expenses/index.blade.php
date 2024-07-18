@@ -50,7 +50,7 @@
             <div class="portlet box blue">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-database"></i>Expense List
+                        <i class="fa fa-database"></i>Operators List
                     </div>
 
                 </div>
@@ -58,30 +58,7 @@
                 <div class="portlet-body">
 
                     <table class="table table-striped table-bordered table-hover" id="expenses">
-                        <!-- <thead>
-                        <tr>
-                            <th>
-                                ID.
-                            </th>
-                            <th>
-                                Item Name
-                            </th>
-                            <th>
-                                Purchase From
-                            </th>
-                            <th>
-                                Purchase Date
-                            </th>
-                            <th>
-                                Price ( {!!  \App\Models\Setting::getCurrency($setting->currency)['symbol'] !!} {{$setting->currency}} )
-                            </th>
-                            <th>
-                                Action
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody> -->
+                        
                     </table>
 
                 </div>
@@ -143,27 +120,40 @@
                         searchable: false,
                     },
                     {
-                        data: 'itemName',
+                        data: 'Name',
                         name: 'itemName',
-                        title: "Item Name"
+                        title: "Policy Holder Name",
+                        width: '15%'
                     },                    
                     {
-                        data: 'employee',
+                        data: 'Patient',
                         name: 'employee',
-                        title: "Employee",
+                        title: "Patient Name",
                         searchable: false,
-                        orderable: false
-                    },                    
+                        orderable: false,
+                        width: '15%'
+                    },  
+                    {
+                        data: 'Relation',
+                        name: 'employee',
+                        title: "Relation with Holder",
+                        searchable: false,
+                        orderable: false,
+                        width: '15%'
+                    },  
+                    {
+                        data: 'Incident Date',
+                        name: 'pincidentdat',
+                        title: "Incident Date",
+                        width: '15%'
+                    },                          
                     {
                         data: 'price',
                         name: 'price',
-                        title: "Price ( {!!  \App\Models\Setting::getCurrency($setting->currency)['symbol'] !!} {{$setting->currency}} )"
+                        title: "Price ( {!!  \App\Models\Setting::getCurrency($setting->currency)['symbol'] !!} {{$setting->currency}} )",
+                        width: '15%'
                     },                    
-                    {
-                        data: 'purchaseDate',
-                        name: 'purchaseDate',
-                        title: "Purchase Date"
-                    },                    
+                               
                     {
                         data: 'action',
                         name: 'action',

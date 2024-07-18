@@ -12,7 +12,6 @@ class Employee extends \Eloquent implements Authenticatable
     // Don't forget to fill this array
     protected $fillable = ['employeeID','designation','fullName','fatherName','gender','email','password','date_of_birth','firmName','mobileNumber','localAddress','profileImage','joiningDate','permanentAddress'];
     protected $guarded = ['id'];
-
     protected $hidden = ['password'];
     protected $appends = ['profile_image_url'];
 

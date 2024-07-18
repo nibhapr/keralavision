@@ -39,7 +39,7 @@
 <!-- BEGIN LOGO -->
 <div class="logo">
     <a href="javacript:;">
-        <img src="<?php echo e($setting->getLogoImageAttribute()); ?>" width="117px"/>
+        <img src="<?php echo e($setting->getLogoImageAttribute()); ?>" width="234px"/>
     </a>
 </div>
 <!-- END LOGO -->
@@ -169,4 +169,4 @@
 </body>
 <!-- END BODY -->
 </html>
-<?php /**PATH C:\Users\Milan\Desktop\Work\keralavision\resources\views/admin/login.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\keralavision\resources\views/admin/login.blade.php ENDPATH**/ ?>

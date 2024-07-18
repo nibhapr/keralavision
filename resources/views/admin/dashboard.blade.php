@@ -46,7 +46,7 @@
 
 
     {{--calender--}}
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-12">
             <div class="portlet box blue calendar">
                 <div class="portlet-title">
@@ -76,7 +76,7 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 
 
     <!-- BEGIN DASHBOARD STATS -->

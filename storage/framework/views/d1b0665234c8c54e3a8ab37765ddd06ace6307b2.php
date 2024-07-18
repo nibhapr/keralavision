@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('head'); ?>
 
     <!-- BEGIN PAGE LEVEL STYLES -->
@@ -50,7 +48,7 @@
 
 
     
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-12">
             <div class="portlet box blue calendar">
                 <div class="portlet-title">
@@ -81,7 +79,7 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 
 
     <!-- BEGIN DASHBOARD STATS -->
@@ -344,4 +342,4 @@
     </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.adminlayouts.adminlayout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Milan\Desktop\Work\keralavision\resources\views/admin/dashboard.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.adminlayouts.adminlayout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\keralavision\resources\views/admin/dashboard.blade.php ENDPATH**/ ?>

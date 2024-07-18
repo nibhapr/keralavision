@@ -32,7 +32,7 @@
 <!-- BEGIN LOGO -->
 <div class="logo">
     <a href="javacript:;">
-        <img src="{{$setting->getLogoImageAttribute()}}" width="117px"/>
+        <img src="{{$setting->getLogoImageAttribute()}}" width="234px"/>
     </a>
 </div>
 <!-- END LOGO -->

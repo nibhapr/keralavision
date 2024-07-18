@@ -96,7 +96,7 @@ class DashboardController extends BaseController
         $this->leaveActive = 'active';
 
         $this->attendance = Attendance::where('employeeID', '=', $this->employeeID)->get();
-
+    // dd($this->attendance);
         return View::make('front.leave', $this->data);
     }
 

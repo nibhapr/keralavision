@@ -51,7 +51,7 @@ body {
 .reg-block-header {
 	padding: 5px 0px 0px 0px;
 	margin-bottom: 30px;
-	background: black;
+	background: white;
 
 	border-bottom: solid 1px #eee;
 }
@@ -62,7 +62,7 @@ body {
 }
 .reg-block-header h3 {
 	text-align: center;
-	color: #ffffff !important;
+	color: #000000 !important;
 	margin-bottom: 15px;
 }
 

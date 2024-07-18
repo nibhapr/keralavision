@@ -1,12 +1,12 @@
-@extends('front.layouts.frontlayout')
-@section('head')
+
+<?php $__env->startSection('head'); ?>
     <style>
         .padding-100 {
             padding: 100px;
         }
     </style>
-@endsection
-@section('mainarea')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('mainarea'); ?>
     <div class="col-md-9">
         <!--Profile Body-->
         <div class="profile-body">
@@ -26,7 +26,8 @@
                                         <span class="primary-link">Name</span>
                                     </td>
                                     <td>
-                                        {{$employee->fullName}}
+                                        <?php echo e($employee->fullName); ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -34,7 +35,8 @@
                                         <span class="primary-link">Location</span>
                                     </td>
                                     <td>
-                                        {{$employee->localAddress}}
+                                        <?php echo e($employee->localAddress); ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -42,7 +44,8 @@
                                         <span class="primary-link">Toatl Family Members</span>
                                     </td>
                                     <td>
-                                        {{$employee->fatherName}}
+                                        <?php echo e($employee->fatherName); ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -50,7 +53,8 @@
                                         <span class="primary-link">DOB</span>
                                     </td>
                                     <td>
-                                        {{ date('d-M-Y',strtotime($employee->date_of_birth))}}
+                                        <?php echo e(date('d-M-Y',strtotime($employee->date_of_birth))); ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -58,7 +62,8 @@
                                         <span class="primary-link">Gender</span>
                                     </td>
                                     <td>
-                                        {{ucfirst($employee->gender)}}
+                                        <?php echo e(ucfirst($employee->gender)); ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -66,7 +71,8 @@
                                         <span class="primary-link">Email</span>
                                     </td>
                                     <td>
-                                        {{$employee->email}}
+                                        <?php echo e($employee->email); ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -74,7 +80,8 @@
                                         <span class="primary-link">Phone</span>
                                     </td>
                                     <td>
-                                        {{$employee->mobileNumber}}
+                                        <?php echo e($employee->mobileNumber); ?>
+
                                     </td>
                                 </tr>
                                
@@ -83,7 +90,8 @@
                                         <span class="primary-link">Permanent Address</span>
                                     </td>
                                     <td>
-                                        {{$employee->permanentAddress}}
+                                        <?php echo e($employee->permanentAddress); ?>
+
                                     </td>
                                 </tr>
                                 </tbody>
@@ -104,7 +112,8 @@
                                         <span class="primary-link">Employee ID</span>
                                     </td>
                                     <td>
-                                        {{$employee->employeeID}}
+                                        <?php echo e($employee->employeeID); ?>
+
                                     </td>
                                 </tr>
                                
@@ -113,7 +122,8 @@
                                         <span class="primary-link">Date of Joining</span>
                                     </td>
                                     <td>
-                                        {{date('d-M-Y',strtotime($employee->joiningDate))}}
+                                        <?php echo e(date('d-M-Y',strtotime($employee->joiningDate))); ?>
+
                                     </td>
                                 </tr>
                                
@@ -134,7 +144,8 @@
                                         <span class="primary-link">Account Holder Name</span>
                                     </td>
                                     <td>
-                                        {{$employee->getBankDetail->accountName ?? ''}}
+                                        <?php echo e($employee->getBankDetail->accountName ?? ''); ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -142,7 +153,8 @@
                                         <span class="primary-link">Account Number</span>
                                     </td>
                                     <td>
-                                        {{$employee->getBankDetail->accountNumber ?? ''}}
+                                        <?php echo e($employee->getBankDetail->accountNumber ?? ''); ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -150,7 +162,8 @@
                                         <span class="primary-link">Bank Name</span>
                                     </td>
                                     <td>
-                                        {{$employee->getBankDetail->bank ?? ''}}
+                                        <?php echo e($employee->getBankDetail->bank ?? ''); ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -158,7 +171,8 @@
                                         <span class="primary-link">PAN Number</span>
                                     </td>
                                     <td>
-                                        {{$employee->getBankDetail->pan ?? ''}}
+                                        <?php echo e($employee->getBankDetail->pan ?? ''); ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -166,7 +180,8 @@
                                         <span class="primary-link">IFSC Code</span>
                                     </td>
                                     <td>
-                                        {{$employee->getBankDetail->ifsc ?? ''}}
+                                        <?php echo e($employee->getBankDetail->ifsc ?? ''); ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -174,7 +189,8 @@
                                         <span class="primary-link">Branch</span>
                                     </td>
                                     <td>
-                                        {{$employee->getBankDetail->branch ?? ''}}
+                                        <?php echo e($employee->getBankDetail->branch ?? ''); ?>
+
                                     </td>
                                 </tr>
                                 </tbody>
@@ -191,21 +207,21 @@
                             <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bullhorn"></i>Notice Board</h2>
                         </div>
                         <div id="scrollbar2" class="panel-body contentHolder">
-                            @if(count($noticeboards))
-                                @foreach($noticeboards as $notice)
+                            <?php if(count($noticeboards)): ?>
+                                <?php $__currentLoopData = $noticeboards; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notice): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="profile-event">
                                         <div class="date-formats">
-                                            <span>{{date('d',strtotime($notice->created_at))}}</span>
-                                            <small>{{date('m, Y',strtotime($notice->created_at))}}</small>
+                                            <span><?php echo e(date('d',strtotime($notice->created_at))); ?></span>
+                                            <small><?php echo e(date('m, Y',strtotime($notice->created_at))); ?></small>
                                         </div>
                                         <div class="overflow-h">
-                                            <h3 class="heading-xs" onclick="showNotice({{$notice->id}});return false;">
-                                                <a href="javascript:;">{{$notice->title}}</a></h3>
-                                            <p>{!! \Illuminate\Support\Str::words($notice->description, 100,'....') !!}</p>
+                                            <h3 class="heading-xs" onclick="showNotice(<?php echo e($notice->id); ?>);return false;">
+                                                <a href="javascript:;"><?php echo e($notice->title); ?></a></h3>
+                                            <p><?php echo \Illuminate\Support\Str::words($notice->description, 100,'....'); ?></p>
                                         </div>
                                     </div>
-                                @endforeach
-                            @endif
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
 
                         </div>
                     </div>
@@ -217,25 +233,26 @@
                         </div>
                         <div id="scrollbar3" class="panel-body contentHolder">
 
-                            @forelse($holidays as $holiday)
-                                {{--Check for upcoming Holidays--}}
+                            <?php $__empty_1 = true; $__currentLoopData = $holidays; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $holiday): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                
 
                                 <div
-                                    class="alert-blocks alert-blocks-{{$holiday_color[$holiday->id%count($holiday_color)]}}">
+                                    class="alert-blocks alert-blocks-<?php echo e($holiday_color[$holiday->id%count($holiday_color)]); ?>">
                                     <div class="overflow-h">
                                         <strong
-                                            class="color-{{$holiday_font_color[$holiday->id%count($holiday_font_color)]}}">{{$holiday->occassion}}
+                                            class="color-<?php echo e($holiday_font_color[$holiday->id%count($holiday_font_color)]); ?>"><?php echo e($holiday->occassion); ?>
+
                                             <small class="pull-right">
-                                                <em>{{date('d M Y',strtotime($holiday->date))}}</em></small>
+                                                <em><?php echo e(date('d M Y',strtotime($holiday->date))); ?></em></small>
                                         </strong>
                                     </div>
                                 </div>
-                            @empty
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                 <div class="text-center padding-100">
 
                                     No Holiday
                                 </div>
-                            @endforelse
+                            <?php endif; ?>
 
                         </div>
                     </div> -->
@@ -246,18 +263,18 @@
                         </div>
                         <div id="scrollbar3" class="panel-body contentHolder">
 
-                            @foreach($userAwards as $award)
+                            <?php $__currentLoopData = $userAwards; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $award): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="alert-blocks award-list"
-                                     onclick="showAwardDetails({{$award->id}});return false;">
+                                     onclick="showAwardDetails(<?php echo e($award->id); ?>);return false;">
                                     <div class="overflow-h">
                                         <strong class="color-dark">
                                             <small class="pull-right">
-                                                <em>{{ucfirst($award->forMonth)}} {{$award->forYear}}</em></small>
+                                                <em><?php echo e(ucfirst($award->forMonth)); ?> <?php echo e($award->forYear); ?></em></small>
                                         </strong>
-                                        <small class="award-name">{{$award->awardName}}</small>
+                                        <small class="award-name"><?php echo e($award->awardName); ?></small>
                                     </div>
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                         </div>
@@ -281,9 +298,9 @@
                         <div class="overflow-h">
                             <strong class="color-dark">Last absent
                                 <small class="pull-right">
-                                    <em>{{$employee->lastAbsent($employee->employeeID,'date')}}</em></small>
+                                    <em><?php echo e($employee->lastAbsent($employee->employeeID,'date')); ?></em></small>
                             </strong>
-                            <small class="award-name">{{$employee->lastAbsent($employee->employeeID)}}</small>
+                            <small class="award-name"><?php echo e($employee->lastAbsent($employee->employeeID)); ?></small>
                         </div>
                     </div>
 
@@ -299,7 +316,7 @@
     </div>
 
 
-    {{--------------------------Show Notice MODALS-----------------}}
+    
 
 
 
@@ -311,11 +328,11 @@
                 <div class="modal-header">
                     <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                     <h4 id="myLargeModalLabel" class="modal-title show-notice-title">
-                        {{--Notice Title using Javascript--}}
+                        
                     </h4>
                 </div>
                 <div class="modal-body" id="show-notice-body">
-                    {{--Notice full Description using Javascript--}}
+                    
                 </div>
             </div>
         </div>
@@ -323,10 +340,10 @@
 
 
 
-    {{------------------------END Notice MODALS---------------------}}
-@endsection
+    
+<?php $__env->stopSection(); ?>
 
-@section('footerjs')
+<?php $__env->startSection('footerjs'); ?>
     <script>
         $(document).ready(function () {
 
@@ -342,34 +359,36 @@
                 },
                 events: [
 
-                        {{-- Attendance on calendar --}}
-                        @foreach($attendance as $attend)
+                        
+                        <?php $__currentLoopData = $attendance; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attend): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     {
 
-                        title: "{{$attend->status}}",
-                        start: '{{$attend->date}}',
+                        title: "<?php echo e($attend->status); ?>",
+                        start: '<?php echo e($attend->date); ?>',
 
-                        @if($attend->status=='absent')
+                        <?php if($attend->status=='absent'): ?>
                         color: '#e50000',
-                        title: "{{$attend->status}}-{{$attend->leaveType}}",
-                        @endif
+                        title: "<?php echo e($attend->status); ?>-<?php echo e($attend->leaveType); ?>",
+                        <?php endif; ?>
 
 
                     },
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                        {{--Holidays on Calendar--}}
-                        @foreach($holidays as $holiday)
+                        
+                        <?php $__currentLoopData = $holidays; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $holiday): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     {
                         className: "holiday",
-                        title: "{{$holiday->occassion}}",
-                        start: '{{$holiday->date}}',
+                        title: "<?php echo e($holiday->occassion); ?>",
+                        start: '<?php echo e($holiday->date); ?>',
                         color: 'grey'
 
                     },
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 ]
             });
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('front.layouts.frontlayout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\keralavision\resources\views/front/employeeDashboard.blade.php ENDPATH**/ ?>

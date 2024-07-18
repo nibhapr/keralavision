@@ -8,7 +8,7 @@
 <!--<![endif]-->
 
 <head>
-    <title>{{$setting->website}} - {{$pageTitle}} </title>
+    <title><?php echo e($setting->website); ?> - <?php echo e($pageTitle); ?> </title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -18,29 +18,40 @@
 
 
     <!-- CSS Global Compulsory -->
-{!! HTML::style('front_assets/plugins/bootstrap/css/bootstrap.min.css') !!}
-{!! HTML::style('front_assets/css/style.css') !!}
+<?php echo HTML::style('front_assets/plugins/bootstrap/css/bootstrap.min.css'); ?>
+
+<?php echo HTML::style('front_assets/css/style.css'); ?>
+
 <!-- CSS Implementing Plugins -->
 
-{!! HTML::style('front_assets/plugins/font-awesome/css/font-awesome.min.css') !!}
-{!! HTML::style('front_assets/plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css') !!}
+<?php echo HTML::style('front_assets/plugins/font-awesome/css/font-awesome.min.css'); ?>
 
-{!! HTML::style('front_assets/plugins/scrollbar/src/perfect-scrollbar.css') !!}
-{!! HTML::style('front_assets/plugins/fullcalendar/fullcalendar.css') !!}
-{!! HTML::style('front_assets/plugins/fullcalendar/fullcalendar.print.css',array('media' => 'print')) !!}
+<?php echo HTML::style('front_assets/plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css'); ?>
+
+
+<?php echo HTML::style('front_assets/plugins/scrollbar/src/perfect-scrollbar.css'); ?>
+
+<?php echo HTML::style('front_assets/plugins/fullcalendar/fullcalendar.css'); ?>
+
+<?php echo HTML::style('front_assets/plugins/fullcalendar/fullcalendar.print.css',array('media' => 'print')); ?>
+
 
 
 <!-- CSS Page Style -->
-{!! HTML::style('front_assets/css/pages/profile.css') !!}
+<?php echo HTML::style('front_assets/css/pages/profile.css'); ?>
+
 
 <!-- CSS Theme -->
-{!! HTML::style('front_assets/css/theme-colors/default.css') !!}
+<?php echo HTML::style('front_assets/css/theme-colors/default.css'); ?>
+
 
 <!-- CSS Customization -->
-    {!! HTML::style('front_assets/css/custom.css') !!}
-    {!! HTML::style('assets/global/plugins/froiden-helper/helper.css') !!}
+    <?php echo HTML::style('front_assets/css/custom.css'); ?>
 
-    @yield('head')
+    <?php echo HTML::style('assets/global/plugins/froiden-helper/helper.css'); ?>
+
+
+    <?php echo $__env->yieldContent('head'); ?>
     <style>
         .bg {
             text-align: center;
@@ -69,8 +80,8 @@
                         <span class="sr-only">Toggle navigation</span>
                         <span class="fa fa-bars"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ URL::to('dashboard')}}">
-                        <img src="{{$setting->getLogoImageAttribute()}}" height="30px" id="logo-header"
+                    <a class="navbar-brand" href="<?php echo e(URL::to('dashboard')); ?>">
+                        <img src="<?php echo e($setting->getLogoImageAttribute()); ?>" height="30px" id="logo-header"
                              class="logo-default"/>
                     </a>
                 </div>
@@ -80,21 +91,21 @@
                     <ul class="nav navbar-nav">
 
                         <!-- Home -->
-                        <li class="{{$homeActive ?? ''}}">
-                            <a href="{{ URL::to('dashboard')}}">
+                        <li class="<?php echo e($homeActive ?? ''); ?>">
+                            <a href="<?php echo e(URL::to('dashboard')); ?>">
                                 Home
                             </a>
                         </li>
                         <!-- End Home -->
 
                         <!-- Leave -->
-                        <li class="dropdown {{$leaveActive ?? ''}}">
+                        <li class="dropdown <?php echo e($leaveActive ?? ''); ?>">
                             <a href="" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                 Hospital Admit
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="" data-toggle="modal" data-target=".apply_modal">Admit Hospital</a></li>
-                                <li><a href="{{route('front.leave')}}">Admitted details</a></li>
+                                <li><a href="<?php echo e(route('front.leave')); ?>">Admitted details</a></li>
 
                             </ul>
                         </li>
@@ -108,14 +119,14 @@
                                 <li><a href="" data-toggle="modal" data-target=".change_password_modal"
                                        id="change_password_link">Change Password</a></li>
                                 <!-- Logout -->
-                                @if(Auth::guard('employees')->check())
+                                <?php if(Auth::guard('employees')->check()): ?>
                                     <li>
-                                        <a href="{{route('front.logout')}}">
+                                        <a href="<?php echo e(route('front.logout')); ?>">
                                             Logout
                                         </a>
 
                                     </li>
-                            @endif
+                            <?php endif; ?>
                             <!-- End Logout -->
 
                             </ul>
@@ -136,10 +147,10 @@
         <div class="row">
             <!--Left Sidebar-->
             <div class="col-md-3 md-margin-bottom-40">
-                <img class="img-responsive profile-img margin-bottom-20" src="{{ $employee->profile_image_url }}"
+                <img class="img-responsive profile-img margin-bottom-20" src="<?php echo e($employee->profile_image_url); ?>"
                      alt="">
                 <p>
-                <h3 class="text-center">{{$employee->fullName}}</h3>
+                <h3 class="text-center"><?php echo e($employee->fullName); ?></h3>
 
                      
                 </p>
@@ -149,9 +160,10 @@
                     <div class="row profile-stat">
                         <p class= "text-center">Location</p>
                         <!-- <div class="col-md-4 col-sm-4 col-xs-6" data-toggle="tooltip" data-placement="bottom"
-                             title="{{date('F')}}">
+                             title="<?php echo e(date('F')); ?>">
                             <div class="uppercase profile-stat-title">
-                                {{round($attendance_count,2)}}
+                                <?php echo e(round($attendance_count,2)); ?>
+
                             </div>
                             <div class="uppercase profile-stat-text">
                                 Attendance
@@ -160,7 +172,8 @@
                         <!-- <div class="col-md-4 col-sm-4 col-xs-6" data-toggle="tooltip" data-placement="bottom"
                              title="Leaves">
                             <div class="uppercase profile-stat-title">
-                                {{$leaveLeft}}
+                                <?php echo e($leaveLeft); ?>
+
                             </div>
                             <div class="uppercase profile-stat-text">
                                 Leave
@@ -169,7 +182,8 @@
                         <!-- <div class="col-md-4 col-sm-4 col-xs-6" data-toggle="tooltip" data-placement="bottom"
                              title="Total Award Won">
                             <div class="uppercase profile-stat-title">
-                                {{count($employee->getAwards)}}
+                                <?php echo e(count($employee->getAwards)); ?>
+
                             </div>
                             <div class="uppercase profile-stat-text">
                                 Awards
@@ -181,24 +195,25 @@
 
 
                 <!--Notification-->
-                @if(count($current_month_birthdays)>0)
+                <?php if(count($current_month_birthdays)>0): ?>
                     <div class="panel-heading-v2 overflow-h">
                         <h2 class="heading-xs pull-left"><i class="fa fa-birthday-cake"></i> Birthdays</h2>
                     </div>
                     <ul id="scrollbar5" class="list-unstyled contentHolder margin-bottom-20 auto">
-                        @foreach($current_month_birthdays as $birthday)
+                        <?php $__currentLoopData = $current_month_birthdays; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $birthday): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li class="notification">
-                                {!! HTML::image($birthday->profile_image_url,'ProfileImage',['class'=>"rounded-x"]) !!}
+                                <?php echo HTML::image($birthday->profile_image_url,'ProfileImage',['class'=>"rounded-x"]); ?>
+
 
                                 <div class="overflow-h">
-                                    <span><strong>{{$birthday->fullName}}</strong> has birthday on</span>
-                                    <strong>{{date('d F',strtotime($birthday->date_of_birth))}}</strong>
+                                    <span><strong><?php echo e($birthday->fullName); ?></strong> has birthday on</span>
+                                    <strong><?php echo e(date('d F',strtotime($birthday->date_of_birth))); ?></strong>
                                 </div>
                             </li>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </ul>
-            @endif
+            <?php endif; ?>
             <!--End Notification-->
 
 
@@ -206,9 +221,9 @@
             </div>
             <!--End Left Sidebar-->
 
-            {{--------------------Main Area----------------}}
-            @yield('mainarea')
-            {{---------------Main Area End here------------}}
+            
+            <?php echo $__env->yieldContent('mainarea'); ?>
+            
 
 
         </div>
@@ -227,7 +242,8 @@
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <p class="text-center">
-                            {{date('Y')}} &copy; {{$setting->website}}
+                            <?php echo e(date('Y')); ?> &copy; <?php echo e($setting->website); ?>
+
 
                         </p>
                     </div>
@@ -245,7 +261,7 @@
     <!--=== End Footer Version 1 ===-->
 
 
-    {{--------------------------Apply Leave  MODALS-----------------------------}}
+    
 
     <div class="modal fade apply_modal in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
@@ -261,9 +277,8 @@
                     <div class="portlet-body form">
 
                         <!------------------------------ BEGIN FORM ----------------------------------------->
-                        {!!
-                        Form::open(array('route'=>"front.leave_store",'class'=>'sky-form','id'=>'leave-form','method'=>'POST'))
-                        !!}
+                        <?php echo Form::open(array('route'=>"front.leave_store",'class'=>'sky-form','id'=>'leave-form','method'=>'POST')); ?>
+
 
                         <div class="row">
                             <div class="col-md-3 form-group">
@@ -277,12 +292,14 @@
                                        placeholder="Hospital Name"/>
                             </div>
                             <!-- <div class="col-md-2 form-group">
-                                {!! Form::select('leaveType[0]', $leaveTypes,null,['class' => 'form-control
-                                leaveType','id'=>'leaveType0','onchange'=>'halfDayToggle(0,this.value)'] ) !!}
+                                <?php echo Form::select('leaveType[0]', $leaveTypes,null,['class' => 'form-control
+                                leaveType','id'=>'leaveType0','onchange'=>'halfDayToggle(0,this.value)'] ); ?>
+
                             </div>
                             <div class="col-md-2 form-group">
-                                {!! Form::select('halfleaveType[0]', $leaveTypeWithoutHalfDay,null,['class' =>
-                                'form-control halfLeaveType','id'=>'halfLeaveType0'] ) !!}
+                                <?php echo Form::select('halfleaveType[0]', $leaveTypeWithoutHalfDay,null,['class' =>
+                                'form-control halfLeaveType','id'=>'halfLeaveType0'] ); ?>
+
                             </div> -->
                             <div class="col-md-5 form-group">
                                 <input class="form-control form-control-inline" type="text" name="reason[0]"
@@ -303,17 +320,18 @@
                             </div>
 
                         </div>
-                    {!! Form::close() !!}
+                    <?php echo Form::close(); ?>
+
                     <!------------------------ END FORM ------------------------------------------>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {{------------------------Apply Leave MODALS-------------------------}}
+    
 
 
-    {{--------------------------Change Password  MODALS-----------------------------}}
+    
 
     <div class="modal fade change_password_modal in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
@@ -327,14 +345,14 @@
                     </h4>
                 </div>
                 <div class="modal-body" id="change_password_modal_body">
-                    {{--Load with Ajax call--}}
+                    
 
                 </div>
             </div>
         </div>
     </div>
-    {{------------------------Change Password  MODALS-------------------------}}
-    @include('include.show-modal')
+    
+    <?php echo $__env->make('include.show-modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 
 </div>
@@ -342,23 +360,34 @@
 
 
 <!-- JS Global Compulsory -->
-{!! HTML::script("js/jquery-3.6.0.min.js") !!}
-{!! HTML::script('front_assets/plugins/jquery/jquery-migrate.min.js') !!}
-{!! HTML::script('front_assets/plugins/bootstrap/js/bootstrap.min.js') !!}
+<?php echo HTML::script("js/jquery-3.6.0.min.js"); ?>
+
+<?php echo HTML::script('front_assets/plugins/jquery/jquery-migrate.min.js'); ?>
+
+<?php echo HTML::script('front_assets/plugins/bootstrap/js/bootstrap.min.js'); ?>
+
 
 <!-- JS Implementing Plugins -->
-{!! HTML::script('front_assets/plugins/back-to-top.js') !!}
+<?php echo HTML::script('front_assets/plugins/back-to-top.js'); ?>
+
 
 <!-- Scrollbar -->
-{!! HTML::script('front_assets/plugins/scrollbar/src/jquery.mousewheel.js') !!}
-{!! HTML::script('front_assets/plugins/scrollbar/src/perfect-scrollbar.js') !!}
+<?php echo HTML::script('front_assets/plugins/scrollbar/src/jquery.mousewheel.js'); ?>
+
+<?php echo HTML::script('front_assets/plugins/scrollbar/src/perfect-scrollbar.js'); ?>
+
 <!-- JS Customization -->
-{!! HTML::script('front_assets//plugins/sky-forms/version-2.0.1/js/jquery-ui.min.js') !!}
-{!! HTML::script('front_assets/plugins/sky-forms/version-2.0.1/js/jquery.form.min.js') !!}
+<?php echo HTML::script('front_assets//plugins/sky-forms/version-2.0.1/js/jquery-ui.min.js'); ?>
+
+<?php echo HTML::script('front_assets/plugins/sky-forms/version-2.0.1/js/jquery.form.min.js'); ?>
+
 <!-- JS Page Level -->
-{!! HTML::script('front_assets/plugins/lib/moment.min.js') !!}
-{!! HTML::script('front_assets/plugins/fullcalendar/fullcalendar.min.js') !!}
-{!! HTML::script('assets/global/plugins/froiden-helper/helper.js') !!}
+<?php echo HTML::script('front_assets/plugins/lib/moment.min.js'); ?>
+
+<?php echo HTML::script('front_assets/plugins/fullcalendar/fullcalendar.min.js'); ?>
+
+<?php echo HTML::script('assets/global/plugins/froiden-helper/helper.js'); ?>
+
 
 <script>
     jQuery(document).ready(function ($) {
@@ -368,7 +397,7 @@
 
     });
 </script>
-@yield('footerjs')
+<?php echo $__env->yieldContent('footerjs'); ?>
 
 <script>
     $(function () {
@@ -377,15 +406,17 @@
 </script>
 
 <!--[if lt IE 9]>
-{!! HTML::script('front_assets/plugins/respond.js') !!}
-{!! HTML::script('front_assets/plugins/html5shiv.js') !!}
+<?php echo HTML::script('front_assets/plugins/respond.js'); ?>
+
+<?php echo HTML::script('front_assets/plugins/html5shiv.js'); ?>
+
 
 <![endif]-->
 <script>
-    @php
+    <?php
         $j=0
-    @endphp
-    {{--{{'';$j=0;}}--}}
+    ?>
+    
     $('#leave').datepicker({minDate: 0});
     $('.halfLeaveType').hide();
     var $insertBefore = $('#insertBefore');
@@ -397,8 +428,8 @@
 
         $(' <div class="row" id="row' + $i + '"> ' +
             '<div class="col-md-3"><label class="input"><i class="icon-append fa fa-calendar"></i><input type="text" name="date[' + $i + ']" id="leave' + $i + '" placeholder="Leave Date"></label></div>' +
-            '<div class="col-md-2">{!!  Form::select('leaveType[]', $leaveTypes,null,['class' => 'form-control leaveType','id'=>'leaveType','onchange'=>'halfDayToggle(0,this.value)'] )  !!}</div>' +
-            '<div class="col-md-2">{!!  Form::select('halfleaveType[]', $leaveTypeWithoutHalfDay,null,['class' => 'form-control halfLeaveType','id'=>'halfLeaveType'] )  !!}</div>' +
+            '<div class="col-md-2"><?php echo Form::select('leaveType[]', $leaveTypes,null,['class' => 'form-control leaveType','id'=>'leaveType','onchange'=>'halfDayToggle(0,this.value)'] ); ?></div>' +
+            '<div class="col-md-2"><?php echo Form::select('halfleaveType[]', $leaveTypeWithoutHalfDay,null,['class' => 'form-control halfLeaveType','id'=>'halfLeaveType'] ); ?></div>' +
             '<div class="col-md-5"><input class="form-control form-control-inline" name="reason[' + $i + ']" type="text" value="" placeholder="Reason"/></div></div>').insertBefore($insertBefore);
 
         $("#row" + $i + " .leaveType").attr('id', 'leaveType' + $i);
@@ -423,12 +454,12 @@
     $('#change_password_link').on("click", function () {
 
         $('#change_password_modal_body').css("padding", "100px");
-        $('#change_password_modal_body').html('{!! HTML::image('front_assets/img/loading-spinner-blue.gif') !!}');
+        $('#change_password_modal_body').html('<?php echo HTML::image('front_assets/img/loading-spinner-blue.gif'); ?>');
         $('#change_password_modal_body').attr('class', 'text-center');
 
         $.ajax({
             type: 'GET',
-            url: "{{route('front.change_password_modal')}}",
+            url: "<?php echo e(route('front.change_password_modal')); ?>",
 
             data: {},
             success: function (response) {
@@ -449,7 +480,7 @@
     function change_password() {
         $.easyAjax({
             type: 'POST',
-            url: "{{route('front.change_password')}}",
+            url: "<?php echo e(route('front.change_password')); ?>",
             data: $('#change_password_form').serialize(),
             container: "#change_password_form",
             success: function (response) {
@@ -465,7 +496,7 @@
 
         $.easyAjax({
             type: 'POST',
-            url: "{{route('front.leave_store')}}",
+            url: "<?php echo e(route('front.leave_store')); ?>",
             data: $('#leave-form').serialize(),
             container: "#leave-form",
             messagePosition: 'inline',
@@ -476,7 +507,7 @@
     //COMMENT VIEW ON QUESTION
     function showNotice(noticeID) {
         $('#showModal .modal-dialog').removeClass("modal-md").addClass("modal-lg");
-        var url = "{{ route('front.show_notice',[':id']) }}";
+        var url = "<?php echo e(route('front.show_notice',[':id'])); ?>";
         url = url.replace(':id', noticeID);
         $.ajaxModal('#showModal', url);
         $('#user_' + noticeID).removeClass('info');
@@ -485,7 +516,7 @@
 
     function showAwardDetails(awardID) {
         $('#showModal .modal-dialog');
-        var url = "{{ route('front.show_award_details',[':id']) }}";
+        var url = "<?php echo e(route('front.show_award_details',[':id'])); ?>";
         url = url.replace(':id', awardID);
         $.ajaxModal('#showModal', url);
     }
@@ -493,3 +524,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\keralavision\resources\views/front/layouts/frontlayout.blade.php ENDPATH**/ ?>

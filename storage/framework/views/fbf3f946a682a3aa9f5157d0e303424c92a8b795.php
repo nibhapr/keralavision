@@ -32,4 +32,4 @@
 
 <?php echo HTML::style('assets/global/plugins/froiden-helper/helper.css'); ?>
 
-<?php /**PATH C:\Users\Milan\Desktop\Work\keralavision\resources\views/admin/include/head.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\keralavision\resources\views/admin/include/head.blade.php ENDPATH**/ ?>

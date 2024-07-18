@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateExpensesTable extends Migration {
 
 	/**
@@ -22,7 +21,7 @@ class CreateExpensesTable extends Migration {
             $table->double('price');
             $table->string('bill',100)->nullable(); //Attachement for the bill
 			$table->foreignId('employee_id')->nullable();
-
+            
             $table->timestamps();
 		});
 	}

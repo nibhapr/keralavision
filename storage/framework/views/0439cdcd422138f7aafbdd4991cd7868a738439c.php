@@ -97,4 +97,4 @@
 </script>
 
 <?php echo $__env->yieldContent('footerjs'); ?>
-<?php /**PATH C:\Users\Milan\Desktop\Work\keralavision\resources\views/admin/include/footerjs.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\keralavision\resources\views/admin/include/footerjs.blade.php ENDPATH**/ ?>

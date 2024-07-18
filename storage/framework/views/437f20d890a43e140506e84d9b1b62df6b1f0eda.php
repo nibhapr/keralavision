@@ -176,4 +176,4 @@
     </div>
 </div>
 <!-- END SIDEBAR -->
-<?php /**PATH C:\Users\Milan\Desktop\Work\keralavision\resources\views/admin/include/sidebar.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\keralavision\resources\views/admin/include/sidebar.blade.php ENDPATH**/ ?>

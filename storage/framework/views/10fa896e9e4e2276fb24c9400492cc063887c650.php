@@ -1,13 +1,16 @@
-@extends('front.layouts.frontlayout')
 
-@section('head')
 
-    {!! HTML::style("assets/global/css/components.css") !!}
-    {!! HTML::style("assets/global/css/plugins.css") !!}
-    {!! HTML::style("assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css") !!}
-@stop
+<?php $__env->startSection('head'); ?>
 
-@section('mainarea')
+    <?php echo HTML::style("assets/global/css/components.css"); ?>
+
+    <?php echo HTML::style("assets/global/css/plugins.css"); ?>
+
+    <?php echo HTML::style("assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('mainarea'); ?>
     <div class="col-md-9">
         <!--Profile Body-->
         <div class="profile-body">
@@ -16,24 +19,25 @@
                 <div class="col-sm-12">
 
 
-                    {{------------------Error Messages----------}}
+                    
                     <div id="alert_message">
-                        @if(Session::get('success_leave'))
+                        <?php if(Session::get('success_leave')): ?>
                             <div class="alert alert-success"><i
-                                    class="fa fa-check"></i> {!! Session::get('success_leave') !!}
-                            </div>
-                        @endif
+                                    class="fa fa-check"></i> <?php echo Session::get('success_leave'); ?>
 
-                        @if (Session::get('error_leave'))
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if(Session::get('error_leave')): ?>
                             <div class="alert alert-danger alert-dismissable ">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                                @foreach (Session::get('error_leave') as $error)
-                                    <p><strong><i class="fa fa-warning"></i></strong> {{ $error }}</p>
-                                @endforeach
+                                <?php $__currentLoopData = Session::get('error_leave'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <p><strong><i class="fa fa-warning"></i></strong> <?php echo e($error); ?></p>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
-                        @endif
+                        <?php endif; ?>
                     </div>
-                    {{------------------Error Messages----------}}
+                    
 
 
                     <div class="panel panel-grey">
@@ -57,13 +61,13 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td> {{-- ID from Contoller ajaxload------}} </td>
-                                    <td> {{-- Date from Contoller ajaxload----}} </td>
-                                    <td> {{-- Leavetype from Contoller ajaxload--}} </td>
-                                    <td> {{-- Reason from Contoller ajaxload----}} </td>
-                                    <td> {{-- Applied on from Contoller ajaxload---}} </td>
-                                    <td> {{-- Status from Contoller ajaxload----}} </td>
-                                    <td> {{-- Action from Contoller ajaxload----}} </td>
+                                    <td>  </td>
+                                    <td>  </td>
+                                    <td>  </td>
+                                    <td>  </td>
+                                    <td>  </td>
+                                    <td>  </td>
+                                    <td>  </td>
                                 </tr>
 
                                 </tbody>
@@ -89,7 +93,7 @@
     </div>
 
 
-    {{--------------------------Show Notice MODALS-----------------}}
+    
 
 
     <div class="modal fade show_notice" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -103,24 +107,26 @@
                     </h4>
                 </div>
                 <div class="modal-body" id="modal-data">
-                    {{--Notice full Description using Javascript--}}
+                    
                 </div>
             </div>
         </div>
     </div>
 
 
-    {{------------------------END Notice MODALS---------------------}}
+    
 
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('footerjs')
+<?php $__env->startSection('footerjs'); ?>
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
 
-    {!! HTML::script("assets/global/plugins/datatables/media/js/jquery.dataTables.min.js") !!}
-    {!! HTML::script("assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js") !!}
+    <?php echo HTML::script("assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"); ?>
+
+    <?php echo HTML::script("assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"); ?>
+
 
 
     <!-- END PAGE LEVEL PLUGINS -->
@@ -137,7 +143,7 @@
             "bServerSide": true,
             "bDestroy": true,
             "order": [[0, "desc"]],
-            "ajax": "{{ route("front.leave_applications") }}",
+            "ajax": "<?php echo e(route("front.leave_applications")); ?>",
             "aoColumns": [
                 {'sClass': 'center', 'bSortable': true},
                 {'sClass': 'center', 'bSortable': false},
@@ -163,8 +169,8 @@
 
 
         function show_application(id) {
-            $('#modal-data').html('<div class="text-center">{!! HTML::image('front_assets/img/loading-spinner-blue.gif') !!}</div>');
-            var url = "{{ route('dashboard.show',[':id']) }}";
+            $('#modal-data').html('<div class="text-center"><?php echo HTML::image('front_assets/img/loading-spinner-blue.gif'); ?></div>');
+            var url = "<?php echo e(route('dashboard.show',[':id'])); ?>";
             url = url.replace(':id', id);
             $.ajax({
                 type: "GET",
@@ -176,12 +182,14 @@
             });
         }
 
-        @if (Session::get('error_leave'))
+        <?php if(Session::get('error_leave')): ?>
         $("html, body").animate({scrollTop: $('#applications').height() + 600}, 2000);
-        @endif
+        <?php endif; ?>
 
 
     </script>
 
 
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('front.layouts.frontlayout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\keralavision\resources\views/front/leave.blade.php ENDPATH**/ ?>

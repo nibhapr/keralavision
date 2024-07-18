@@ -9,4 +9,4 @@
     </div>
 </div>
 <!-- END FOOTER -->
-<?php /**PATH C:\Users\Milan\Desktop\Work\keralavision\resources\views/admin/include/footer.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\keralavision\resources\views/admin/include/footer.blade.php ENDPATH**/ ?>

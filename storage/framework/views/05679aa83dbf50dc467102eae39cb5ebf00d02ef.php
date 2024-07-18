@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{$setting->website}} | Login Page</title>
+    <title><?php echo e($setting->website); ?> | Login Page</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,8 @@
 <!-- CSS Implementing Plugins -->
 <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/logins/login-4/assets/css/login-4.css">
-{!! HTML::style('assets/global/plugins/froiden-helper/helper.css') !!}
+<?php echo HTML::style('assets/global/plugins/froiden-helper/helper.css'); ?>
+
 </head>
 
 <body>
@@ -21,7 +22,8 @@
 
 <section class="p-3 p-md-4 p-xl-5">
   <div class="container">
-  {!! Form::open(array('id'=>'login-form')) !!}
+  <?php echo Form::open(array('id'=>'login-form')); ?>
+
     <div class="card border-light-subtle shadow-sm">
       <div class="row g-0">
         <div class="col-12 col-md-6">
@@ -41,11 +43,11 @@
               <div class="row gy-3 gy-md-4 overflow-hidden login-form-2">
                 <div class="col-12">
                 <input type="email" class="form-control" id="email" name="email"
-                placeholder="{{ trans('core.email') }}" required>
+                placeholder="<?php echo e(trans('core.email')); ?>" required>
                 </div>
                 <div class="col-12">
                 <input type="password" class="form-control" id="password" name="password"
-                placeholder="{{ trans('core.password') }}" required>
+                placeholder="<?php echo e(trans('core.password')); ?>" required>
                 </div>
                 <div class="col-12">
                   <div class="form-check">
@@ -56,11 +58,12 @@
                 </div>
                 <div class="col-12">
                   <div class="d-grid">
-                    <button class="btn bsb-btn-xl btn-primary" type="submit" id="submitbutton"  onclick="login(); return false;">{{trans('core.btnLogin')}}</button>
+                    <button class="btn bsb-btn-xl btn-primary" type="submit" id="submitbutton"  onclick="login(); return false;"><?php echo e(trans('core.btnLogin')); ?></button>
                   </div>
                 </div>
               </div>
-              {!! Form::close() !!}
+              <?php echo Form::close(); ?>
+
            
           
           </div>
@@ -70,20 +73,26 @@
  
   </div>
 </section>
-{!! HTML::script("js/jquery-3.6.0.min.js") !!}
-{!! HTML::script('front_assets/plugins/jquery/jquery-migrate.min.js') !!}
-{!! HTML::script('front_assets/plugins/bootstrap/js/bootstrap.min.js') !!}
+<?php echo HTML::script("js/jquery-3.6.0.min.js"); ?>
+
+<?php echo HTML::script('front_assets/plugins/jquery/jquery-migrate.min.js'); ?>
+
+<?php echo HTML::script('front_assets/plugins/bootstrap/js/bootstrap.min.js'); ?>
+
 
 <!-- JS Implementing Plugins -->
-{!! HTML::script('front_assets/plugins/back-to-top.js') !!}
-{!! HTML::script('front_assets/plugins/backstretch/jquery.backstretch.min.js') !!}
-{!! HTML::script('assets/global/plugins/froiden-helper/helper.js') !!}
+<?php echo HTML::script('front_assets/plugins/back-to-top.js'); ?>
+
+<?php echo HTML::script('front_assets/plugins/backstretch/jquery.backstretch.min.js'); ?>
+
+<?php echo HTML::script('assets/global/plugins/froiden-helper/helper.js'); ?>
+
 <script>
     function login() {
 
         $.easyAjax({
             type: 'POST',
-            url: "{{route('login')}}",
+            url: "<?php echo e(route('login')); ?>",
             data: $('#login-form').serialize(),
             container: "#login-form",
             messagePosition: 'inline',
@@ -98,4 +107,4 @@
 
 </script>
 </body>
-</html>
+</html><?php /**PATH C:\xampp\htdocs\keralavision\resources\views/front/login.blade.php ENDPATH**/ ?>

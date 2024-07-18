@@ -40,4 +40,4 @@
 <!-- END BODY -->
 
 </html>
-<?php /**PATH C:\Users\Milan\Desktop\Work\keralavision\resources\views/admin/adminlayouts/adminlayout.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\keralavision\resources\views/admin/adminlayouts/adminlayout.blade.php ENDPATH**/ ?>

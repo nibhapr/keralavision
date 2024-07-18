@@ -92,7 +92,7 @@ class EmployeesController extends AdminBaseController
      */
     public function create()
     {
-        
+       dd("hello"); 
         $this->department = Department::pluck('deptName', 'id');        
         return View::make('admin.employees.create', $this->data);
     }
