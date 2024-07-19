@@ -25,7 +25,7 @@
     <div class="card border-light-subtle shadow-sm">
       <div class="row g-0">
         <div class="col-12 col-md-6">
-          <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy" src="/front_assets/img/background.png" alt="BootstrapBrain Logo">
+          <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy" src="/front_assets/img/background.jpg" alt="BootstrapBrain Logo">
         </div>
         <div class="col-12 col-md-6">
           <div class="card-body p-3 p-md-4 p-xl-5">
