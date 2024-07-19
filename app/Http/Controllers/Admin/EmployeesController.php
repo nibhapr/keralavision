@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Classes\Files;
 use App\Classes\Reply;
 use App\Events\CreateEmployeeEvent;
@@ -92,7 +91,7 @@ class EmployeesController extends AdminBaseController
      */
     public function create()
     {
-       dd("hello"); 
+       
         $this->department = Department::pluck('deptName', 'id');        
         return View::make('admin.employees.create', $this->data);
     }
@@ -110,9 +109,7 @@ class EmployeesController extends AdminBaseController
         try {
 
             $employee = Employee::create($request->toArray());
-           
-
-            // Profile Image Upload
+        // Profile Image Upload
             if ($request->profileImage) {
                 $file = new Files();
                 $employee->profileImage = $file->upload($request->profileImage, 'employee');
@@ -249,7 +246,6 @@ class EmployeesController extends AdminBaseController
 
         else if ($request->updateType == 'personalInfo') {
             $employee = Employee::where('employeeID', '=', $id)->get()->first();
-
             // Profile Image Upload
             if ($request->profileImage) {
                 $file = new Files();
@@ -257,18 +253,12 @@ class EmployeesController extends AdminBaseController
             } else {
                 $filename = $request->hiddenImage;
             }
-
             $employee->update($request->toArray());
-
             $employee->profileImage = $filename;
-
             if($request->new_password != ''){
                 $employee->password = $request->new_password;
             }
-
             $employee->save();
-
-
             return Reply::success('Updated Successfully');
         }
 
